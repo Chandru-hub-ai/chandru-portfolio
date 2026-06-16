@@ -1,0 +1,1397 @@
+/* ==========================================================================
+   1. VARIABLES & FUTURISTIC BASE SETUP
+   ========================================================================== */
+:root {
+  --bg-dark: #06070b;
+  --panel-bg: rgba(14, 17, 27, 0.65);
+  --panel-border: rgba(255, 255, 255, 0.05);
+  
+  /* Cyber Electric Color System */
+  --neon-cyan: #00f0ff;
+  --neon-purple: #9d00ff;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-dark);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient Deep Layer Background Glows */
+.ambient-glow {
+  position: fixed;
+  top: -10%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0,240,255,0.07) 0%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   2. STICKY METADATA NAVIGATION
+   ========================================================================== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(6, 7, 11, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--panel-border);
+}
+
+nav {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+
+.logo .pulse {
+  color: var(--neon-cyan);
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-item {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-item span {
+  font-family: var(--font-display);
+  color: var(--neon-cyan);
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.nav-item:hover {
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   3. HERO SECTOR
+   ========================================================================== */
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.hero-portal {
+  min-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 100px;
+  gap: 4rem;
+}
+
+.hero-left {
+  flex: 1.2;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-family: var(--font-display);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.status-badge .dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--neon-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.glitch-title {
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  margin-bottom: 1.5rem;
+}
+
+.hollow-text {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(241, 245, 249, 0.8);
+}
+
+.sub-headline {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--neon-cyan);
+  margin-bottom: 1.5rem;
+}
+
+.hero-bio {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 580px;
+  line-height: 1.7;
+}
+
+/* Interactive Portal Button */
+.action-zone {
+  margin-top: 3rem;
+}
+
+.portal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 14px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease;
+}
+
+.portal-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.15), transparent);
+  transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.portal-btn:hover {
+  border-color: var(--neon-cyan);
+}
+
+.portal-btn:hover::before {
+  left: 100%;
+}
+
+.btn-arrow {
+  color: var(--neon-cyan);
+  transition: transform 0.3s ease;
+}
+
+.portal-btn:hover class .btn-arrow {
+  transform: translateX(6px);
+}
+
+/* Premium Image Scanner Container */
+.hero-right {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+}
+
+.image-frame {
+  position: relative;
+  width: 360px;
+  height: 440px;
+  border-radius: 12px;
+  background: #0e111b;
+  padding: 10px;
+}
+
+.image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0.85;
+  filter: grayscale(20%);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.image-frame:hover img {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+/* Futuristic Target Reticles */
+.frame-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--neon-cyan);
+  pointer-events: none;
+}
+.top-left { top: 0; left: 0; border-right: none; border-bottom: none; }
+.bottom-right { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+/* Laser Scanner Animation effect */
+.scanner-line {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+  box-shadow: 0 0 10px var(--neon-cyan);
+  animation: scan 4s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+/* ==========================================================================
+   4. BENTO CONTROL GRID SECTION
+   ========================================================================== */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding-bottom: 8rem;
+}
+
+/* Base Dashboard Modules */
+.bento-box {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 2.2rem;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+}
+
+.bento-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 240, 255, 0.25);
+}
+
+.box-tag {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+}
+
+.bento-box h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.bento-box p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Layout Mapping for Bento Box items */
+.bento-about {
+  grid-column: span 2;
+}
+
+.bento-education .institution {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.bento-education .date-stamp {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.05);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Custom Achievements List Matrix */
+.achieve-list {
+  list-style: none;
+}
+
+.achieve-list li {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.achieve-list .index {
+  color: var(--neon-cyan);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* Interactive Technical Skill Modules */
+.bento-skills {
+  grid-column: span 2;
+}
+
+.matrix-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.matrix-chip {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.matrix-chip::before {
+  content: attr(data-tech);
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.06);
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.matrix-chip:hover {
+  background: rgba(0, 240, 255, 0.04);
+  border-color: rgba(0, 240, 255, 0.3);
+  color: var(--text-primary);
+}
+
+/* Highlighted Component Box */
+.bento-project-primary {
+  grid-column: span 2;
+  border-left: 2px solid var(--neon-cyan);
+}
+
+.proj-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.status-tag {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--neon-cyan);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* Contact Node Links */
+.link-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.link-node {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 12px;
+  background: rgba(255,255,255,0.01);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.link-node:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+}
+
+.link-node .label {
+  font-family: var(--font-display);
+  color: var(--neon-cyan);
+  font-size: 0.8rem;
+}
+
+.link-node.geo {
+  cursor: default;
+}
+
+/* ==========================================================================
+   5. FOOTER ARCHITECTURE
+   ========================================================================== */
+footer {
+  border-top: 1px solid var(--panel-border);
+  padding: 3rem 0;
+  background: #030407;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #475569;
+  font-size: 0.85rem;
+  font-family: var(--font-display);
+}
+
+.sys-time {
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN TRANSLATIONS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .glitch-title {
+    font-size: 4.2rem;
+  }
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-about, .bento-skills, .bento-project-primary {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  nav .nav-links {
+    display: none; /* Ready for collapse toggle implementations */
+  }
+  
+  .hero-portal {
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+    gap: 3rem;
+    padding-top: 140px;
+  }
+  
+  .hero-bio {
+    margin: 0 auto;
+  }
+  
+  .image-frame {
+    width: 280px;
+    height: 340px;
+  }
+  
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bento-about, .bento-skills, .bento-project-primary {
+    grid-column: span 1;
+  }
+  
+  .glitch-title {
+    font-size: 3rem;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+/* ==========================================================================
+   UPDATED BENTO GRID RE-MAPPING
+   ========================================================================== */
+@media (min-width: 1025px) {
+  .bento-deep-learning {
+    grid-column: span 2;
+    border-right: 2px solid var(--neon-cyan);
+  }
+  
+  .bento-leadership {
+    grid-column: span 1;
+  }
+}
+
+/* Deep Learning Module Structural Elements */
+.bento-deep-learning .sub-context {
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  margin-bottom: 1.2rem;
+  font-family: var(--font-display);
+}
+
+.architecture-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.spec-node {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.spec-node strong {
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+/* Leadership Module Refinements */
+.bento-leadership .institution {
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.bento-leadership .desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Achievement Item Icon Tweak */
+.achieve-list li {
+  line-height: 1.4;
+}
+.achieve-list .index {
+  font-size: 1.1rem;
+}
+/* ==========================================================================
+   BENTO MEDIA DISPLAY SYSTEM
+   ========================================================================== */
+.bento-media-display {
+  position: relative;
+  width: 100%;
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #030407;
+  aspect-ratio: 16 / 10; /* Keeps a clean landscape ratio for certificates */
+}
+
+.bento-media-display img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  filter: saturate(0.8) contrast(1.1);
+  transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+}
+
+/* Subtle holographic glare across the photo */
+.glare-effect {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%, rgba(0,240,255,0.02) 100%);
+  pointer-events: none;
+}
+
+/* Interactive Hover States */
+.bento-box:hover .bento-media-display {
+  border-color: rgba(0, 240, 255, 0.3);
+}
+
+.bento-box:hover .bento-media-display img {
+  opacity: 0.95;
+  filter: saturate(1) contrast(1);
+  transform: scale(1.02);
+}
+
+/* Reusable spacing utility */
+.margin-top {
+  margin-top: 1.5rem;
+}
+/* ==========================================================================
+   ADVANCED BENTO MAPPING ADJUSTMENTS
+   ========================================================================== */
+@media (min-width: 1025px) {
+  .bento-about { grid-column: span 2; }
+  .bento-skills { grid-column: span 2; }
+  .bento-project-primary { grid-column: span 2; }
+  .bento-deep-learning { grid-column: span 2; border-right: 2px solid var(--neon-cyan); }
+  
+  /* Balances the look of the card blocks across rows */
+  .bento-achievements, .bento-innovation, .bento-hackathon, .bento-science, .bento-leadership {
+    grid-column: span 1;
+  }
+}
+
+.bento-box .desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+/* Specific fix for stacked portrait media cards */
+.bento-box .portrait-contain img {
+  object-fit: contain;
+  background: #080b11; /* Sleek background filler color matching your theme */
+  opacity: 0.85;       /* Keeps consistency with other images */
+}
+
+.bento-box:hover .portrait-contain img {
+  opacity: 1;
+}
+/* ==========================================================================
+   FLAGSHIP PROJECT: QUANTUM SHIELD AUDITOR STYLING
+   ========================================================================== */
+@media (min-width: 1025px) {
+  .bento-project-flagship {
+    grid-column: span 3; /* Forces the flagship project to stretch elegantly across the entire screen layout */
+    border-right: 2px solid var(--neon-cyan);
+    border-bottom: 2px solid var(--neon-purple);
+  }
+}
+
+.bento-project-flagship .proj-subtitle, 
+.bento-project-primary .proj-subtitle {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.bento-project-flagship .proj-subtitle {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* Internal layout for Quantum Project Grid */
+.quantum-architecture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+}
+
+.q-node {
+  background: rgba(6, 7, 11, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 1.2rem;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.q-node:hover {
+  border-color: rgba(0, 240, 255, 0.2);
+  background: rgba(0, 240, 255, 0.01);
+}
+
+.q-node h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--neon-cyan);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.q-node p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.q-node strong {
+  color: var(--text-primary);
+}
+
+/* Badge colors for the new builds */
+.status-tag.accent-purple {
+  background: rgba(157, 0, 255, 0.1);
+  color: var(--neon-purple);
+}
+
+.status-tag.accent-cyan {
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--neon-cyan);
+}
+
+/* AccountAlly sub-list spacing fixes */
+.project-matrix-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.2rem;
+}
+
+.p-spec {
+  background: rgba(0, 240, 255, 0.01);
+  border-left: 2px solid var(--neon-cyan);
+  padding-left: 12px;
+}
+
+.p-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--neon-cyan);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.p-spec p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.p-spec strong {
+  color: var(--text-primary);
+}
+/* ==========================================================================
+   SILVER METALLIC ACCENTS FOR PODIUM FINISHES
+   ========================================================================== */
+.status-tag.accent-silver {
+  background: rgba(224, 224, 224, 0.08);
+  color: #e0e0e0;
+  border: 1px solid rgba(224, 224, 224, 0.2);
+  text-shadow: 0 0 8px rgba(224, 224, 224, 0.3);
+}
+
+.p-spec.spec-silver {
+  border-left: 2px solid #e0e0e0;
+  background: rgba(224, 224, 224, 0.005);
+}
+
+.p-label.label-silver {
+  color: #c0c0c0;
+}
+/* ==========================================================================
+   UPGRADED TERMINAL CONTACT SECTION STYLING
+   ========================================================================== */
+@media (min-width: 1025px) {
+  .bento-contact-terminal {
+    grid-column: span 3; /* Matches the width of the Flagship module for balance */
+    border-top: 1px solid var(--neon-cyan);
+  }
+}
+
+.bento-contact-terminal {
+  background: rgba(11, 14, 20, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.5rem !important;
+}
+
+/* Terminal Window Header Bar */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.6rem 1rem;
+  border-radius: 6px 6px 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 1.2rem;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+  margin-right: 1.5rem;
+}
+
+.t-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.t-dot.red { background: #ff5f56; }
+.t-dot.yellow { background: #ffbd2e; }
+.t-dot.green { background: #27c93f; }
+
+.terminal-title {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+/* Terminal Text Behaviors */
+.terminal-intro {
+  font-family: var(--font-display);
+  color: var(--neon-cyan);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.blink {
+  animation: terminal-blink 1s infinite;
+  color: var(--neon-cyan);
+}
+
+@keyframes terminal-blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Grid layout for Communications Matrix */
+.link-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.matrix-link-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.matrix-link-card:not(.structural-node):hover {
+  background: rgba(0, 240, 255, 0.01);
+  border-color: rgba(0, 240, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.05);
+}
+
+/* Meta Labels Layer */
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.meta-protocol {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.meta-index {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+/* Content Details */
+.matrix-link-card h4 {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.matrix-value {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  word-break: break-all;
+}
+
+.card-action {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--neon-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: auto;
+  transition: color 0.2s ease;
+}
+
+.matrix-link-card:hover .card-action:not(.telemetry) {
+  color: var(--text-primary);
+}
+
+.card-action.telemetry {
+  color: rgba(255, 255, 255, 0.2);
+}
+/* ==========================================================================
+   UPGRADED SKILLS MATRIX INTERFACE
+   ========================================================================== */
+.bento-skills-matrix .matrix-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.matrix-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.matrix-tier {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tier-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  color: var(--neon-cyan);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.matrix-grid-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.bento-skills-matrix .matrix-chip {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  padding: 0.5rem 0.9rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+}
+
+/* Micro-interaction Hover Effects based on Category */
+.bento-skills-matrix .matrix-chip:hover {
+  background: rgba(0, 240, 255, 0.02);
+  border-color: var(--neon-cyan);
+  transform: translateX(2px);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+/* Silver tint accent for specific cutting-edge skills */
+.bento-skills-matrix .matrix-chip[data-tech="PQC"]:hover,
+.bento-skills-matrix .matrix-chip[data-tech="GenAI"]:hover {
+  border-color: #e0e0e0;
+  box-shadow: 0 0 10px rgba(224, 224, 224, 0.15);
+}
+/* ==========================================================================
+   FORM AND POPUP MODAL ARCHITECTURE STYLING
+   ========================================================================== */
+.contact-split-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Secure Inputs Configuration */
+.secure-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: var(--neon-cyan);
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem;
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.form-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.form-submit-btn {
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid var(--neon-cyan);
+  color: var(--text-primary);
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.form-submit-btn:hover {
+  background: var(--neon-cyan);
+  color: #06070b;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+}
+
+/* Modal Core Mask Layer */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 5, 9, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.hidden { display: none; }
+.modal-overlay.visible { opacity: 1; }
+
+.modal-frame {
+  background: #0b0e14;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 90%;
+  max-width: 460px;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+#modal-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.modal-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  padding: 0.65rem;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+/* ==========================================================================
+   GLOBAL TOP BANNER ALERT (STAYS AT THE TOP OF THE PAGE)
+   ========================================================================== */
+.global-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f131a; /* Dark background to match theme */
+  border-bottom: 1px solid rgba(0, 240, 255, 0.3); /* Subtle cyan neon underline glow */
+  padding: 0.6rem 1.5rem;
+  position: relative;
+  z-index: 10000; /* Stays on top of navigation menus */
+  transition: all 0.3s ease-in-out;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.banner-badge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #00f0ff; /* Bright cyan accent text */
+  letter-spacing: 1px;
+}
+
+.banner-text {
+  font-size: 0.85rem;
+  color: #e0e0e0;
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.banner-close {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.banner-close:hover {
+  color: #ff5f56; /* Smooth transition to alert red on hover */
+}
+
+/* This utility class gets triggered by JS when you click '✕' */
+.banner-hidden {
+  margin-top: -60px; /* Slides the banner up smoothly out of view */
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* ==========================================================================
+   POPUP ALERT MODAL (DARK BLUR GLASS OVERLAY)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 5, 9, 0.7); /* Deep overlay background */
+  backdrop-filter: blur(8px); /* Blurs out the portfolio background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15000; /* Highest priority layer above everything else */
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* State changes controlled via JS form triggers */
+.modal-overlay.hidden { 
+  display: none; 
+}
+
+.modal-overlay.visible { 
+  opacity: 1; 
+}
+
+/* The actual floating container box */
+.modal-frame { 
+  background: #0b0e14; 
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  width: 90%; 
+  max-width: 440px; 
+  border-radius: 8px; 
+  overflow: hidden; 
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-body { 
+  padding: 1.5rem; 
+}
+
+#modal-text { 
+  font-size: 0.9rem; 
+  color: #e0e0e0; 
+  line-height: 1.6; 
+  margin-bottom: 1.5rem; 
+}
+
+/* Simple interactive button to close popup */
+.modal-btn { 
+  width: 100%; 
+  background: rgba(255, 255, 255, 0.05); 
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  color: #ffffff; 
+  padding: 0.65rem; 
+  border-radius: 4px; 
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer; 
+  transition: all 0.2s ease;
+}
+
+.modal-btn:hover { 
+  background: rgba(255, 255, 255, 0.1); 
+  border-color: rgba(255, 255, 255, 0.3);
+}
+/* ==========================================================================
+   HERO HEADLINE CONTACT BOX BUTTON
+   ========================================================================== */
+.bento-contact-btn {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03); /* Translucent backdrop matching bento cells */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 190px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(4px);
+}
+
+/* Micro metadata label inside the box element */
+.bento-contact-btn .btn-meta-tag {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #666;
+  letter-spacing: 1.5px;
+  transition: color 0.25s ease;
+}
+
+/* Core clickable text label */
+.bento-contact-btn .btn-label-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.bento-contact-btn .btn-icon {
+  color: #00f0ff;
+  transition: transform 0.25s ease;
+}
+
+/* Technical Corner Bracket Anchors */
+.bento-contact-btn .btn-bracket {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+.bento-contact-btn .btn-bracket.top-left {
+  top: -1px;
+  left: -1px;
+  border-top-color: rgba(255, 255, 255, 0.2);
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+.bento-contact-btn .btn-bracket.bottom-right {
+  bottom: -1px;
+  right: -1px;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  border-right-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Hover Accent Configurations */
+.bento-contact-btn:hover {
+  background: rgba(0, 240, 255, 0.05); /* Tint background slightly cyan */
+  border-color: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.bento-contact-btn:hover .btn-meta-tag {
+  color: #00f0ff; /* Subtitle blinks into active terminal accent */
+}
+
+.bento-contact-btn:hover .btn-label-text {
+  color: #ffffff;
+}
+
+.bento-contact-btn:hover .btn-icon {
+  transform: translateX(4px); /* Arrow shimmies slightly forward when hovered */
+}
+
+.bento-contact-btn:hover .btn-bracket.top-left {
+  border-top-color: #00f0ff;
+  border-left-color: #00f0ff;
+}
+.bento-contact-btn:hover .btn-bracket.bottom-right {
+  border-bottom-color: #00f0ff;
+  border-right-color: #00f0ff;
+}
