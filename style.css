@@ -1395,3 +1395,361 @@ footer {
   border-bottom-color: #00f0ff;
   border-right-color: #00f0ff;
 }
+/* ==========================================================================
+   ENHANCED IMAGE MODULE FOR CERTIFICATIONS GRID
+   ========================================================================== */
+   .cert-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 160px; /* கார்டுகளுக்குள் இமேஜ் சீராக அமர நிலையான உயரம் */
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #0d0e12;
+  }
+  
+  .cert-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* இமேஜ் விகிதம் மாறாமல் பாக்ஸிற்குள் ஃபிட் ஆகும் */
+    object-position: top center; /* சர்டிபிகேட்டின் நிறுவனத்தின் லோகோக்கள் தெளிவாகத் தெரிய உதவும் */
+    opacity: 0.75; /* பேக்ரவுண்ட் தீமுடன் ஒன்றிணைய லேசான ஒபாசிட்டி */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+  }
+  
+  .cert-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(6, 7, 11, 0) 40%, rgba(6, 7, 11, 0.85) 100%);
+    pointer-events: none; /* மவுஸ் கிளிக்குகளைத் தடுக்காது */
+  }
+  
+  /* Hover Effect: கார்டு மீது மவுஸை வைக்கும் போது படம் துல்லியமாக மாறும் */
+  .cert-node:hover .cert-image-wrapper img {
+    transform: scale(1.04); /* லேசான ஜூம் இன் எஃபெக்ட் */
+    opacity: 0.95; /* படம் தெளிவாகத் தெரியும் */
+  }
+  
+  .cert-content-block {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  /* ==========================================================================
+   PREMIUM CYBERPUNK CERTIFICATIONS ENGINE
+   ========================================================================== */
+
+/* 1. முதன்மை கிரிட் பாக்ஸ் ஸ்டைல் */
+.bento-certifications-matrix {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 240, 255, 0.07) !important;
+  background: linear-gradient(135deg, rgba(10, 11, 16, 0.7) 0%, rgba(6, 7, 11, 0.9) 100%);
+}
+
+/* 2. கார்டுகளின் லேஅவுட் */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* 3. கார்டு என்ஜின் மற்றும் அனிமேஷன் பேஸ் */
+.cert-node {
+  background: rgba(13, 15, 22, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-left: 2px solid rgba(255, 255, 255, 0.1); /* இயல்பு நிலை பார்டர் */
+  padding: 1.25rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Premium Hover State: அனிமேஷன் மற்றும் நியான் க்ளோ எஃபெக்ட் */
+.cert-node:hover {
+  transform: translateY(-5px);
+  background: rgba(16, 20, 30, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 
+              0 0 20px rgba(0, 240, 255, 0.03);
+}
+
+/* தனித்தனி பிராண்டுகளுக்கு ஏத்த நியான் பார்டர் அனிமேஷன் */
+.cert-node:has(.text-cyan):hover { border-left: 2px solid var(--neon-cyan); }
+.cert-node:has(.text-purple):hover { border-left: 2px solid var(--neon-purple); }
+.cert-node:has(.text-silver):hover { border-left: 2px solid #e0e0e0; }
+
+/* 4. பிரீமியம் இமேஜ் கன்டெய்னர் வித் ஸ்கேன்லைன் எஃபெக்ட் */
+.cert-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 155px;
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 1.2rem;
+  background: #06070b;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.cert-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0.6;
+  filter: grayscale(20%) contrast(110%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Cyber Overlay: கார்டுக்குள் இருக்கும் இருண்ட கிரேடியன்ட் */
+.cert-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(6, 7, 11, 0) 30%, rgba(6, 7, 11, 0.9) 100%);
+  z-index: 2;
+}
+
+/* Hover-ல் இமேஜ் உயிர்பெறும் அனிமேஷன் */
+.cert-node:hover .cert-image-wrapper img {
+  transform: scale(1.06) rotate(0.5deg);
+  opacity: 0.9;
+  filter: grayscale(0%) contrast(100%);
+}
+
+/* 5. டெக்ஸ்ட் மற்றும் லிங்க் ஸ்டைலிங் (Premium Feel) */
+.cert-meta-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.cert-node h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  transition: color 0.3s ease;
+}
+
+/* Hover செய்யும்போது தலைப்பு லேசாக ஒளிரும் */
+.cert-node:hover h4 {
+  color: #fff;
+}
+
+.cert-node p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+
+/* 6. கார்டு ஃபூட்டர் மற்றும் லிங்க்ஸ் */
+.cert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 0.8rem;
+  margin-top: auto;
+}
+
+.verification-code {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.cert-link {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hover-ல் அம்புக்குறி மட்டும் துள்ளி எழும் பிரீமியம் எஃபெக்ட் */
+.cert-link:hover {
+  color: var(--neon-cyan);
+}
+
+.cert-node:has(.text-purple) .cert-link:hover {
+  color: var(--neon-purple);
+}
+
+/* Responsive Scaling */
+@media (min-width: 1025px) {
+  .bento-certifications-matrix {
+    grid-column: span 3;
+  }
+}
+/* Deloitte-க்கான நியான் கிரீன் பார்டர் மற்றும் வேரியபில்ஸ் */
+.text-green { color: #86bc25; } /* Deloitte Brand Green */
+
+.cert-node:has(.text-green):hover { 
+  border-left: 2px solid #86bc25; 
+}
+
+.cert-node:has(.text-green) .cert-link:hover {
+  color: #86bc25;
+}
+/* ==========================================================================
+   DYNAMIC CYBER NOTIFICATION HEADER
+   ========================================================================== */
+.cyber-notification-header {
+  background: linear-gradient(90deg, #0a0b10 0%, #10141e 50%, #0a0b10 100%);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+  padding: 10px 20px;
+  width: 100%;
+  position: relative;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display, monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* நியான் லைவ் பல்ஸ் அனிமேஷன் (Blinking Dot) */
+.live-pulse-node {
+  width: 7px;
+  height: 7px;
+  background-color: var(--neon-cyan, #00f0ff);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--neon-cyan, #00f0ff), 0 0 20px var(--neon-cyan, #00f0ff);
+  animation: cyberPulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.header-matrix-tag {
+  color: var(--neon-cyan, #00f0ff);
+  font-weight: bold;
+}
+
+.notification-text {
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+/* ஹைப்பர் லிங்க் பிரீமியம் எஃபெக்ட் */
+.header-redirect-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 6px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.header-redirect-link:hover {
+  color: var(--neon-cyan, #00f0ff);
+  border-bottom-color: var(--neon-cyan, #00f0ff);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+/* Pulse Keyframe */
+@keyframes cyberPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .notification-content {
+    font-size: 0.72rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    gap: 6px;
+  }
+  .live-pulse-node {
+    display: inline-block;
+  }
+}/* ==========================================================================
+   LIVE BANNER UPDATE ENGINE
+   ========================================================================== */
+
+/* நியான் லைவ் பல்ஸ் அனிமேஷன் (Blinking Dot) */
+.global-banner .live-pulse-node {
+  width: 8px;
+  height: 8px;
+  background-color: var(--neon-cyan, #00f0ff);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--neon-cyan, #00f0ff), 0 0 18px var(--neon-cyan, #00f0ff);
+  animation: bannerPulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* ஹைப்பர் லிங்க் பிரீமியம் டெர்மினல் எஃபெக்ட் */
+.banner-redirect-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 8px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.banner-redirect-link:hover {
+  color: var(--neon-cyan, #00f0ff);
+  border-bottom-color: var(--neon-cyan, #00f0ff);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+/* Pulse Keyframe */
+@keyframes bannerPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .banner-content {
+    font-size: 0.75rem;
+    gap: 4px;
+  }
+}
