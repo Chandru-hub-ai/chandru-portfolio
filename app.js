@@ -7,7 +7,78 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initSmoothScroll();
   initTerminalForm();
+  initScrollReveal();
 });
+
+/* ==========================================================================
+   4. SCROLL REVEAL ENGINE — staggered entrance animations
+   ========================================================================== */
+function initScrollReveal() {
+  // Hero column children — status badge, title, contact chip, sub-headline,
+  // bio, CTA — fade/slide up in sequence on first paint.
+  const heroItems = document.querySelectorAll('.hero-left > *');
+  heroItems.forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = `${i * 90}ms`;
+  });
+
+  // Hero portrait scales in slightly behind the text column.
+  const heroRight = document.querySelector('.hero-right');
+  if (heroRight) {
+    heroRight.classList.add('reveal-scale');
+    heroRight.style.transitionDelay = '220ms';
+  }
+
+  // Every dashboard module gets a reveal, staggered by its position in the
+  // row (3-column grid) so cards appear in a left-to-right wave.
+  const bentoBoxes = document.querySelectorAll('.bento-box');
+  bentoBoxes.forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = `${(i % 3) * 100}ms`;
+  });
+
+  // Certification cards inside the credentials grid — quick scale-stagger.
+  const certNodes = document.querySelectorAll('.cert-node');
+  certNodes.forEach((el, i) => {
+    el.classList.add('reveal-scale');
+    el.style.transitionDelay = `${(i % 5) * 80}ms`;
+  });
+
+  // Quantum Shield architecture spec tiles.
+  const qNodes = document.querySelectorAll('.q-node');
+  qNodes.forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = `${(i % 4) * 80}ms`;
+  });
+
+  const allRevealEls = document.querySelectorAll(
+    '.reveal, .reveal-scale, .reveal-left, .reveal-right'
+  );
+
+  // Fallback for browsers without IntersectionObserver support: just show
+  // everything immediately rather than leaving it invisible.
+  if (!('IntersectionObserver' in window)) {
+    allRevealEls.forEach((el) => el.classList.add('reveal-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: '0px 0px -60px 0px',
+    }
+  );
+
+  allRevealEls.forEach((el) => observer.observe(el));
+}
 
 function initTypewriter() {
   const targetElement = document.querySelector('.sub-headline');
