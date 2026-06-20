@@ -1614,7 +1614,6 @@ footer {
 
 .mobile-nav{
     position:fixed;
-    bottom:15px;
     left:50%;
     transform:translateX(-50%);
     width:92%;
@@ -1658,4 +1657,60 @@ footer {
     color:var(--accent);
     transform:translateY(-5px);
 }
+}
+/* Instagram Style Bottom Navigation */
+.mobile-nav{
+    display:none;
+}
+
+@media (max-width:768px){
+
+.mobile-nav{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:65px;
+
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(20px);
+
+    border-top:1px solid rgba(0,0,0,.08);
+
+    z-index:9999;
+}
+
+.mobile-nav a{
+    color:#666;
+    text-decoration:none;
+    font-size:24px;
+}
+
+}
+@media (max-width:768px){
+
+.mobile-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:65px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    background:#fff;
+    border-top:1px solid #ddd;
+    z-index:9999;
+}
+
+.mobile-nav a{
+    text-decoration:none;
+    color:#666;
+    font-size:24px;
+}
+
 }
