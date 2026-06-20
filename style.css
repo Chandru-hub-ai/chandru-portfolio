@@ -624,13 +624,35 @@ footer {
 
 @media (max-width: 768px) {
   nav .nav-links { display: none; }
+  nav { justify-content: center; }
   .hero-portal { flex-direction: column-reverse; justify-content: center; text-align: center; gap: 3rem; padding-top: 140px; }
   .hero-bio { margin: 0 auto; }
   .image-frame { width: 280px; height: 340px; }
-  .bento-grid { grid-template-columns: 1fr; }
+  .bento-grid { grid-template-columns: 1fr; gap: 1.1rem; }
   .bento-about, .bento-project-primary { grid-column: span 1; }
   .glitch-title { font-size: 3rem; }
   .footer-content { flex-direction: column; gap: 1rem; text-align: center; }
+  .bento-box { padding: 1.6rem; }
+  .main-container { padding: 0 1.25rem; }
+  .quantum-architecture-grid,
+  .link-matrix,
+  .contact-split-grid,
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small phones — extra headroom so nothing crowds or clips */
+@media (max-width: 420px) {
+  .main-container { padding: 0 1rem; }
+  .glitch-title { font-size: 2.4rem; letter-spacing: -1px; }
+  .hero-portal { padding-top: 120px; gap: 2rem; }
+  .image-frame { width: 230px; height: 280px; }
+  .bento-box { padding: 1.3rem; }
+  .bento-box h3 { font-size: 1.35rem; }
+  .status-badge { font-size: 0.68rem; padding: 5px 11px; }
+  .bento-contact-btn { min-width: 0; width: 100%; }
+  nav { padding: 1.1rem 1.25rem; }
 }
 
 @media (min-width: 1025px) {
@@ -1477,240 +1499,122 @@ footer {
     animation: none !important;
   }
 }
-/* ==========================================
-   PREMIUM TEXT HOVER SYSTEM
-========================================== */
-
-.bento-box h3{
-    position:relative;
-    display:inline-block;
-    transition:all .55s cubic-bezier(.16,1,.3,1);
+/* ==========================================================================
+   TEXT HOVER SYSTEM — per-letter wave + animated gradient underline.
+   Pairs with the letter-wrapping in app.js, which splits each card
+   heading into individual <span> characters for the stagger effect.
+   ========================================================================== */
+.bento-box h3 {
+  position: relative;
+  display: inline-block;
 }
 
-.bento-box h3::after{
-    content:'';
-    position:absolute;
-    left:0;
-    bottom:-8px;
-    width:0%;
-    height:2px;
-    background:linear-gradient(
-        90deg,
-        var(--accent),
-        var(--violet),
-        var(--teal),
-        var(--brass)
-    );
-    border-radius:10px;
-    transition:width .5s cubic-bezier(.16,1,.3,1);
+.bento-box h3 span {
+  display: inline-block;
+  transition: transform 0.35s var(--ease), color 0.35s var(--ease);
+  transition-delay: calc(var(--i, 0) * 18ms);
 }
 
-.bento-box p{
-    transition:
-        transform .5s cubic-bezier(.16,1,.3,1),
-        color .5s ease;
+.bento-box h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--box-accent, var(--accent)), var(--violet), var(--teal));
+  transition: width 0.5s var(--ease);
 }
 
-.bento-box:hover h3{
-    transform:translateX(8px);
-    letter-spacing:1px;
+.bento-box:hover h3::after { width: 100%; }
 
-    background:linear-gradient(
-        90deg,
-        var(--accent),
-        var(--violet),
-        var(--teal),
-        var(--brass),
-        var(--accent)
-    );
-
-    background-size:300%;
-    background-clip:text;
-    -webkit-background-clip:text;
-    color:transparent;
-
-    animation:textGradientFlow 5s linear infinite;
-
-    text-shadow:
-      0 0 20px rgba(30,63,209,.15),
-      0 0 30px rgba(109,40,217,.08);
+.bento-box:hover h3 span {
+  transform: translateY(-4px);
+  color: var(--box-accent, var(--accent));
 }
 
-.bento-box:hover h3::after{
-    width:100%;
+.bento-box p {
+  transition: transform 0.5s var(--ease), color 0.4s var(--ease);
 }
 
-.bento-box:hover p{
-    transform:translateX(8px);
-    color:var(--ink);
+.bento-box:hover p {
+  transform: translateX(8px);
+  color: var(--ink);
 }
 
-@keyframes textGradientFlow{
-    0%{
-        background-position:0% 50%;
-    }
-    100%{
-        background-position:300% 50%;
-    }
-}
-/* ===== TEXT FLY EFFECT ===== */
-
-.bento-box h3,
-.bento-box p{
-    transition: all .6s cubic-bezier(.16,1,.3,1);
-    will-change: transform;
+/* ==========================================================================
+   MOBILE BOTTOM NAV — floating glass pill, true centered fixed positioning.
+   Only ever touch ONE of these blocks — duplicating it with conflicting
+   left/transform/width values is what caused the earlier misalignment.
+   ========================================================================== */
+.mobile-nav {
+  display: none;
 }
 
-.bento-box h3{
-    position: relative;
-    display: inline-block;
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    width: min(94vw, 420px);
+    height: 64px;
+    padding: 0 6px;
+
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    box-shadow: var(--shadow-card-hover);
+    z-index: 9999;
+
+    /* Keeps the bar clear of the home-indicator on notched phones */
+    margin-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .mobile-nav a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    text-decoration: none;
+    color: var(--ink-muted);
+    font-size: 1.15rem;
+    line-height: 1;
+
+    transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+
+  .mobile-nav a span {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.3px;
+    color: inherit;
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a:active {
+    color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  /* Stop the floating pill from covering the last section's content */
+  body { padding-bottom: 96px; }
 }
 
-.bento-box h3::after{
-    content:'';
-    position:absolute;
-    left:0;
-    bottom:-6px;
-    width:0%;
-    height:2px;
-    border-radius:10px;
-    background:linear-gradient(
-        90deg,
-        var(--accent),
-        var(--violet),
-        var(--teal)
-    );
-    transition:width .5s ease;
-}
-
-.bento-box:hover h3{
-    transform:
-        translateX(15px)
-        translateY(-8px)
-        rotate(-1deg);
-
-    color:var(--accent);
-    text-shadow:
-        0 8px 20px rgba(30,63,209,.15);
-}
-
-.bento-box:hover h3::after{
-    width:100%;
-}
-
-.bento-box:hover p{
-    transform:
-        translateX(12px)
-        translateY(-4px);
-
-    color:var(--ink);
-}
-/* ===== MOBILE BOTTOM NAV ===== */
-.mobile-nav{
-    display:none;
-}
-
-@media(max-width:768px){
-
-.mobile-nav{
-    position:fixed;
-    left:50%;
-    transform:translateX(-50%);
-    width:92%;
-    height:65px;
-
-    background:rgba(255,255,255,.85);
-    backdrop-filter:blur(20px);
-
-    border:1px solid rgba(0,0,0,.08);
-    border-radius:25px;
-
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.12);
-
-    z-index:9999;
-}
-
-.mobile-nav a{
-    text-decoration:none;
-    color:var(--ink-muted);
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-    font-size:20px;
-    gap:2px;
-
-    transition:.3s;
-}
-
-.mobile-nav a span{
-    font-size:10px;
-}
-
-.mobile-nav a:hover{
-    color:var(--accent);
-    transform:translateY(-5px);
-}
-}
-/* Instagram Style Bottom Navigation */
-.mobile-nav{
-    display:none;
-}
-
-@media (max-width:768px){
-
-.mobile-nav{
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-
-    position:fixed;
-    left:0;
-    bottom:0;
-    width:100%;
-    height:65px;
-
-    background:rgba(255,255,255,.95);
-    backdrop-filter:blur(20px);
-
-    border-top:1px solid rgba(0,0,0,.08);
-
-    z-index:9999;
-}
-
-.mobile-nav a{
-    color:#666;
-    text-decoration:none;
-    font-size:24px;
-}
-
-}
-@media (max-width:768px){
-
-.mobile-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:65px;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    background:#fff;
-    border-top:1px solid #ddd;
-    z-index:9999;
-}
-
-.mobile-nav a{
-    text-decoration:none;
-    color:#666;
-    font-size:24px;
-}
-
+@media (max-width: 420px) {
+  .mobile-nav { width: 96vw; height: 58px; bottom: 10px; }
+  .mobile-nav a { font-size: 1rem; }
+  body { padding-bottom: 86px; }
 }

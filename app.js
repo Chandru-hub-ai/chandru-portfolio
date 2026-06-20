@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTerminalForm();
   initScrollReveal();
   initCardSpotlight();
+  initLetterTitles();
 });
 
 /* ==========================================================================
@@ -307,13 +308,21 @@ if (heroSubContact) {
     }
   });
 }
-document.querySelectorAll('.bento-box h3').forEach(title => {
-    title.innerHTML = title.textContent
-        .split("")
-        .map(letter =>
-            letter === " "
-                ? " "
-                : `<span>${letter}</span>`
-        )
-        .join("");
-});
+/* ==========================================================================
+   5. PER-LETTER CARD TITLE SPLIT — pairs with the .bento-box h3 span
+   hover wave in style.css. Each letter becomes its own <span> with a
+   --i index so CSS can stagger the transition-delay per letter.
+   ========================================================================== */
+function initLetterTitles() {
+  document.querySelectorAll('.bento-box h3').forEach((title) => {
+    const original = title.textContent;
+    title.setAttribute('aria-label', original);
+    title.innerHTML = original
+      .split('')
+      .map((letter, i) => {
+        const safe = letter === ' ' ? '&nbsp;' : letter;
+        return `<span style="--i:${i}" aria-hidden="true">${safe}</span>`;
+      })
+      .join('');
+  });
+}
