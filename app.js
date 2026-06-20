@@ -8,7 +8,31 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initTerminalForm();
   initScrollReveal();
+  initCardSpotlight();
 });
+
+/* ==========================================================================
+   0. CURSOR-REACTIVE CARD SPOTLIGHT
+   Tracks pointer position over each card and exposes it as CSS custom
+   properties (--mx, --my) so the spotlight glow in style.css can follow it.
+   ========================================================================== */
+function initCardSpotlight() {
+  const spotlightTargets = document.querySelectorAll('.bento-box, .cert-node');
+  if (!spotlightTargets.length) return;
+
+  // Skip on touch-only devices — there's no meaningful "hover" to track.
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  spotlightTargets.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mx', `${x}%`);
+      card.style.setProperty('--my', `${y}%`);
+    });
+  });
+}
 
 /* ==========================================================================
    4. SCROLL REVEAL ENGINE — staggered entrance animations
@@ -167,9 +191,9 @@ function initTerminalForm() {
     modalText.innerHTML = bodyText;
     
     if (isError) {
-      modalTitle.style.color = '#ff5f56'; // Alert Red
+      modalTitle.style.color = '#FF6B5B'; // Alert Red (on dark console)
     } else {
-      modalTitle.style.color = 'var(--neon-cyan)'; // System Cyan
+      modalTitle.style.color = 'var(--accent-bright)'; // System Indigo
     }
 
     modal.classList.remove('hidden');
@@ -243,7 +267,7 @@ if (navContact) {
     
     // Inject clean text values dynamically into modal layout
     modalTitle.innerText = "CONTACT PORTAL";
-    modalTitle.style.color = "#00f0ff"; 
+    modalTitle.style.color = "var(--accent-bright)"; 
     modalText.innerHTML = "To establish a secure link, please fill out the <strong>Message Portal</strong> form at the bottom of the page, or email me directly at <strong>lingamchandru53@gmail.com</strong>.";
     
     // Fire structural animations by swapping layout state utilities
@@ -272,9 +296,9 @@ if (heroSubContact) {
     
     // Customize your contact popup content window
     modalTitle.innerText = "SECURE PROTOCOL // CONTACT PORTAL";
-    modalTitle.style.color = "#00f0ff"; // Signature Cyan accent glow
+    modalTitle.style.color = "var(--accent-bright)"; // Signature Cyan accent glow
     
-    modalText.innerHTML = "To establish a direct transmission link, please fill out the <strong>Message Portal</strong> form at the bottom of this terminal page, or email me directly at: <br><br><a href='mailto:lingamchandru53@gmail.com' style='color: #00f0ff; text-decoration: underline;'>lingamchandru53@gmail.com</a>";
+    modalText.innerHTML = "To establish a direct transmission link, please fill out the <strong>Message Portal</strong> form at the bottom of this terminal page, or email me directly at: <br><br><a href='mailto:lingamchandru53@gmail.com' style='color: var(--accent-bright); text-decoration: underline;'>lingamchandru53@gmail.com</a>";
     
     // Open the alert box smoothly
     if (systemModal) {
@@ -283,3 +307,13 @@ if (heroSubContact) {
     }
   });
 }
+document.querySelectorAll('.bento-box h3').forEach(title => {
+    title.innerHTML = title.textContent
+        .split("")
+        .map(letter =>
+            letter === " "
+                ? " "
+                : `<span>${letter}</span>`
+        )
+        .join("");
+});
