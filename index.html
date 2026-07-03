@@ -1,470 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chandru LG | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chandru LG — Systems Engineer · AI · PQC · Full-Stack</title>
+<meta name="description" content="Chandru LG — AI architecture, post-quantum cryptography, and full-stack engineering."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"/>
+<noscript><style>
+  #preloader,.cursor-dot,.cursor-ring,.hud-chrome{display:none!important}
+  .eyebrow,.hero-title .line,.hero-role,.hero-bio,.hero-actions,.hero-portrait,.scroll-cue{opacity:1!important;transform:none!important}
+  body{cursor:auto!important;overflow:visible!important}
+  .projects-pin{height:auto!important}
+  .projects-track{flex-direction:column!important;width:auto!important}
+  .project-intro-panel,.project-panel{width:100%!important;max-width:100%!important;border-left:none!important;padding:6vh 6vw!important}
+</style></noscript>
 </head>
 <body>
-   <nav class="mobile-nav">
-    <a href="#home">⌂<span>Home</span></a>
-    <a href="#about">◫<span>About</span></a>
-    <a href="#skills">⚡<span>Skills</span></a>
-    <a href="#projects">◈<span>Projects</span></a>
-    <a href="#contact">✉<span>Contact</span></a>
-</nav>
-<!-- ==========================================
-       UPDATED PREMIUM SYSTEM ALERT BANNER (JUNE 2026)
-       ========================================== -->
-       <div id="top-alert-banner" class="global-banner">
-        <div class="banner-content">
-          <span class="live-pulse-node"></span>
-          <span class="banner-badge">SYS LOG // JUNE 2026 //</span>
-          <p class="banner-text">
-            Successfully compiled 5 Core Industry Credentials (Deloitte, TATA, British Airways, Skyscanner, MongoDB).
-            <a href="#certifications-anchor" class="banner-redirect-link">Audit Matrix Array ↗</a>
-          </p>
-        </div>
-        <button id="close-banner-btn" class="banner-close">✕</button>
-      </div>
-      
-      <div class="ambient-glow"></div>
-  <header>
-   
-    <nav>
-      <div class="logo">CHANDRU<span class="pulse">//</span>System</div>
-      <div class="nav-links">
-        <a href="#about" class="nav-item"><span>01 //</span> About</a>
-        <a href="#skills" class="nav-item"><span>02 //</span> Skills</a>
-        <a href="#projects" class="nav-item"><span>03 //</span> Projects</a>
-        <a href="#contact" class="nav-item"><span>04 //</span> Contact</a>
-        <a href="#contact" id="nav-contact" class="nav-item"><span>05 //</span> Help</a>
-      </div>
-    </nav>
-  </header>
 
-  <main class="main-container">
-    
-    <section id="home" class="hero-portal">
-      <div class="hero-left">
-        <div class="status-badge"><span class="dot"></span> Open for Innovations</div>
-        <h1 class="glitch-title">CHANDRU<br><span class="hollow-text">LG</span></h1>
+<!-- PRELOADER -->
+<div id="preloader" class="preloader">
+  <div class="preloader-hud">
+    <span class="hud-label">SYS.BOOT</span>
+    <span class="hud-status" id="preloaderStatus">INITIALIZING</span>
+    <span class="hud-counter" id="preloaderCounter">00%</span>
+  </div>
+  <h1 class="preloader-name" id="preloaderName">CHANDRU LG</h1>
+  <div class="preloader-bar"><span id="preloaderBarFill"></span></div>
+</div>
 
-        <div class="hero-sub-contact-zone" style="margin-top: 1rem; margin-bottom: 1.5rem;">
-          <button id="hero-sub-contact" class="bento-contact-btn">
-            <span class="btn-bracket top-left"></span>
-            <span class="btn-bracket bottom-right"></span>
-            <span class="btn-meta-tag">SYS // LINK</span>
-            <span class="btn-label-text">Establish Connection <span class="btn-icon">→</span></span>
-          </button>
-        </div>
+<!-- SCROLL PROGRESS -->
+<div class="scroll-prog"><span id="scrollProg"></span></div>
 
-        <h2 class="sub-headline">Engineers AI / Crafts Interfaces / Analyzes Data</h2>
-        <p class="hero-bio">
-          B.Tech IT student pioneering complex intelligent architectures, contextual user interfaces, and advanced full-stack development ecosystems.
-        </p>
-        <div class="action-zone">
-          <a href="#projects" class="portal-btn">
-            <span class="btn-text">Initialize Framework</span>
-            <span class="btn-arrow">→</span>
-          </a>
-        </div>
-      </div>
-      <div class="hero-right">
-        <div class="image-frame">
-          <div class="scanner-line"></div>
-          <img src="profile1.jpeg" alt="Chandru Profile Photo" />
-          <div class="frame-corner top-left"></div>
-          <div class="frame-corner bottom-right"></div>
-        </div>
-      </div>
-    </section>
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"><span id="cursorLabel"></span></div>
 
-    <section id="projects" class="bento-grid">
-      
-      <div id="about" class="bento-box bento-about">
-        <div class="box-tag">Context // Core Mission</div>
-        <h3>The Mission</h3>
-        <p>Currently deep-diving into Information Technology at Nandha College of Technology. I architect real-world computational logic, converting complex data structures into seamless human experiences.</p>
-      </div>
+<!-- HUD CHROME -->
+<div class="hud-chrome">
+  <div class="hud-bottom-left">© 2026 // CHANDRU.SYS</div>
+  <div class="hud-bottom-right"><span class="rec-dot"></span>LIVE BUILD</div>
+</div>
 
-      <div class="bento-box bento-education">
-        <div class="box-tag">Timeline // Academic</div>
-        <h3>B.Tech IT</h3>
-        <p class="institution">Nandha College of Technology</p>
-        <span class="date-stamp">2024 — 2028</span>
-      </div>
+<!-- NAV -->
+<header class="site-header">
+  <a href="#home" class="brand" data-cursor>CHANDRU<span>.LG</span></a>
+  <button id="menuToggle" class="menu-toggle" data-cursor aria-label="Open menu">
+    <span>Menu</span><i></i>
+  </button>
+</header>
 
-      <div class="bento-box bento-achievements">
-        <div class="box-tag">Milestones // IEEE Kongu</div>
-        <h3>YUGAM 2K26</h3>
-        <p class="desc">Secured 1st Prize in Project Presentation and Web Development tracks under the IEEE Student Branch network.</p>
-        <div class="bento-media-display margin-top">
-          <img src="yugam-achievement.jpg" alt="Yugam 2K26 Certificate and Award Photo" />
-          <div class="glare-effect"></div>
-        </div>
-      </div>
-
-      <div class="bento-box bento-innovation">
-        <div class="box-tag">Milestones // Institutional</div>
-        <h3>Nandha's Innovation Day '26</h3>
-        <p class="desc">Awarded 2nd Place at the Edition 15 annual innovation project exhibition ecosystem.</p>
-        <div class="bento-media-display margin-top">
-          <img src="innovation-day.jpg" alt="Nandha Innovation Day 2026 Presentation Ceremony" />
-          <div class="glare-effect"></div>
-        </div>
-      </div>
-
-      <div class="bento-box bento-hackathon">
-        <div class="box-tag">Milestones // Live Builds</div>
-        <h3>TechSprint Hackathon</h3>
-        <p class="desc">Secured 2nd Prize at the Hack with GDG S3 series for building scalable architectural solutions under high-pressure sprint cycles.</p>
-        <div class="bento-media-display margin-top">
-          <img src="techsprint-hackathon.jpg" alt="GDG TechSprint Hackathon Award Ceremony" />
-          <div class="glare-effect"></div>
-        </div>
-      </div>
-
-      <div class="bento-box bento-science">
-        <div class="box-tag">Milestones // State Honor</div>
-        <h3>National Science Day</h3>
-        <p class="desc">Selected for official presentation and distinguished project recognition at Vellalar College, Erode.</p>
-        <div class="bento-media-display portrait-contain margin-top">
-          <img src="science-day.jpg" alt="National Science Day Recognition Ceremony" />
-          <div class="glare-effect"></div>
-        </div>
-      </div>
-
-      <div class="bento-box bento-leadership">
-        <div class="box-tag">Network // Community</div>
-        <h3>Campus Ambassador</h3>
-        <p class="institution">CodeEmy Technologies</p>
-        <p class="desc">Spearheaded tech outreach, community engagement, and peer-to-peer networking initiatives to scale community growth.</p>
-        <div class="bento-media-display margin-top">
-          <img src="codeemy-certificate.png" alt="CodeEmy Campus Ambassador Certificate" />
-          <div class="glare-effect"></div>
-        </div>
-      </div>
-
-      <div class="bento-box bento-deep-learning">
-        <div class="box-tag">Research // MLOps Pipeline</div>
-        <h3>Smart Irrigation Predictor</h3>
-        <p class="sub-context">Analyzed system architectures at the TNSCST-sponsored National Level Seminar (Karpagam Institute of Technology).</p>
-        
-        <div class="architecture-specs">
-          <div class="spec-node">
-            <strong>Edge vs. Cloud:</strong> Light CNNs at field level for real-time crop water stress detection vs. heavy cloud processing.
-          </div>
-          <div class="spec-node">
-            <strong>Data Ingestion:</strong> Managed real-time data streams from distributed IoT sensor nodes & weather APIs.
-          </div>
-          <div class="spec-node">
-            <strong>Model Decay:</strong> Implemented active retraining loops to handle seasonal microclimate shifts.
-          </div>
-        </div>
-        <div class="bento-media-display margin-top">
-          <img src="karpagam-seminar.jpg" alt="TNSCST Seminar Participation Certificate" />
-          <div class="glare-effect"></div>
-        </div>
-      </div>
-
-      <div id="skills" class="bento-box bento-skills-matrix">
-        <div class="box-tag">Core Stack // Computational Infrastructure</div>
-        <h3>Technical Matrix</h3>
-        <p class="matrix-subtitle">Production-verified frameworks, languages, and distributed intelligence pipelines.</p>
-        
-        <div class="matrix-categories">
-          <div class="matrix-tier">
-            <span class="tier-label">Intelligent Architectures //</span>
-            <div class="matrix-grid-chips">
-              <div class="matrix-chip" data-tech="GenAI">Generative AI (Gemini SDK)</div>
-              <div class="matrix-chip" data-tech="ML">Machine Learning / MLOps</div>
-              <div class="matrix-chip" data-tech="PQC">Post-Quantum Cryptography</div>
-            </div>
-          </div>
-
-          <div class="matrix-tier">
-            <span class="tier-label">Core Systems & Languages //</span>
-            <div class="matrix-grid-chips">
-              <div class="matrix-chip" data-tech="Py">Python (FastAPI / Flask)</div>
-              <div class="matrix-chip" data-tech="Ja">Java (Core & Thread Models)</div>
-              <div class="matrix-chip" data-tech="JS">JavaScript / Node.js</div>
-            </div>
-          </div>
-
-          <div class="matrix-tier">
-            <span class="tier-label">Data Engineering & Analytics //</span>
-            <div class="matrix-grid-chips">
-              <div class="matrix-chip" data-tech="SQL">SQL / SQLite Persistence</div>
-              <div class="matrix-chip" data-tech="Fabric">Microsoft Fabric</div>
-              <div class="matrix-chip" data-tech="BI">Power BI Analytics</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="projects-mentor" class="bento-box bento-project-primary">
-        <div class="box-tag">Featured Build 01 // Linguistic Localization</div>
-        <div class="proj-header">
-          <h3>Language Mentor</h3>
-          <span class="status-tag accent-silver">🥈 2nd Place // Innovation Day</span>
-        </div>
-        <p class="proj-subtitle">An AI-driven technical adaptation model breaking conceptual barriers by localizing complex programming paradigms through contextual native analogies.</p>
-        
-        <div class="project-matrix-specs">
-          <div class="p-spec spec-silver">
-            <span class="p-label label-silver">Core Mission //</span>
-            <p>Designed to break down structural programming logic by dynamically mapping engineering concepts to localized native analogies for accelerated technical learning.</p>
-          </div>
-          <div class="p-spec spec-silver">
-            <span class="p-label label-silver">Recognition //</span>
-            <p>Awarded <strong>Second Place</strong> during the institutional annual project showcase for high-impact educational engineering.</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="projects-accountally" class="bento-box bento-project-primary">
-        <div class="box-tag">Featured Build 02 // Voice Automation</div>
-        <div class="proj-header">
-          <h3>AccountAlly</h3>
-          <span class="status-tag accent-silver">Participation</span>
-        </div>
-        <p class="proj-subtitle">A multilingual Gen-AI Voice Assistant deployed for Union Bank of India to bridge the "Language-Logic Gap" in banking ecosystems.</p>
-        
-        <div class="project-matrix-specs">
-          <div class="p-spec spec-silver">
-            <span class="p-label label-silver">Core Engine //</span>
-            <p>Utilizes <strong>Gemini 1.5 Flash</strong> to translate financial jargon into culturally rooted native analogies across <strong>22+ regional dialects</strong>.</p>
-          </div>
-          <div class="p-spec spec-silver">
-            <span class="p-label label-silver">Security Protocol //</span>
-            <p>Features a local <strong>PII Masking Layer</strong> that dynamically redacts sensitive user data on-device, maintaining <strong>100% RBI Data Sovereignty</strong>.</p>
-          </div>
-          <div class="p-spec spec-silver">
-            <span class="p-label label-silver">System Impact //</span>
-            <p>Engineered to optimize traditional banking workflows, effectively reducing physical branch wait times by <strong>40%</strong>.</p>
-          </div>
-        </div>
-      </div>
-      <!-- ==========================================
-           UPDATED: 5-CORE CREDENTIALS MATRIX (JUNE 2026)
-           ========================================== -->
-           <div class="bento-box bento-certifications-matrix">
-            <div class="box-tag">Credentials // Live Validation Pipeline</div>
-            <h3>Recent Certifications</h3>
-            <p class="desc mb-4">Production-verified achievements and simulated industry technical deployments compiled during June 2026.</p>
-            
-            <div class="certifications-grid">
-              
-              <!-- Card 1: Deloitte Cyber Job Simulation (NEW) -->
-              <div class="cert-node">
-                <div class="cert-image-wrapper">
-                  <!-- 💡 image_49a1e4.png கோப்பை deloitte-cert.png என சேமித்து பயன்படுத்தவும் -->
-                  <img src="deloitte-cert.png" alt="Deloitte Cyber Job Simulation Certificate">
-                  <div class="cert-overlay"></div>
-                </div>
-                <div class="cert-content-block">
-                  <div class="cert-meta-header">
-                    <span class="text-green">DELOITTE // FORAGE</span>
-                    <span class="cert-date">JUNE 18, 2026</span>
-                  </div>
-                  <h4>Cyber Job Simulation</h4>
-                  <p>Completed practical simulated tasks focusing on foundational cyber security principles and analysis frameworks within corporate infrastructures.</p>
-                  <div class="cert-footer">
-                    <span class="verification-code">ID: 5fgpGidNonZCAo4G6</span>
-                    <a href="https://www.theforage.com/simulations/deloitte/cyber-security" target="_blank" class="cert-link">Verify ↗</a>
-                  </div>
-                </div>
-              </div>
-    
-              <!-- Card 2: TATA GenAI Data Analytics -->
-              <div class="cert-node">
-                <div class="cert-image-wrapper">
-                  <img src="tata-cert.png" alt="TATA GenAI Powered Data Analytics Certificate">
-                  <div class="cert-overlay"></div>
-                </div>
-                <div class="cert-content-block">
-                  <div class="cert-meta-header">
-                    <span class="cert-provider text-cyan">TATA // FORAGE</span>
-                    <span class="cert-date">JUNE 17, 2026</span>
-                  </div>
-                  <h4>GenAI Powered Data Analytics</h4>
-                  <p>Executed exploratory data analysis, risk profiling, and implemented AI-driven collections strategies using predictive logic models.</p>
-                  <div class="cert-footer">
-                    <span class="verification-code">ID: jYb8MQQ75aGZhrLES</span>
-                    <a href="https://www.theforage.com/simulations/tata/genai-data-analytics" target="_blank" class="cert-link">Verify ↗</a>
-                  </div>
-                </div>
-              </div>
-    
-              <!-- Card 3: British Airways Data Science -->
-              <div class="cert-node">
-                <div class="cert-image-wrapper">
-                  <img src="ba-cert.png" alt="British Airways Data Science Certificate">
-                  <div class="cert-overlay"></div>
-                </div>
-                <div class="cert-content-block">
-                  <div class="cert-meta-header">
-                    <span class="cert-provider text-purple">BRITISH AIRWAYS // FORAGE</span>
-                    <span class="cert-date">JUNE 18, 2026</span>
-                  </div>
-                  <h4>Data Science Job Simulation</h4>
-                  <p>Modeled airport lounge eligibility architectures at Heathrow Terminal 3 and engineered custom predictive metrics for consumer buying behavior.</p>
-                  <div class="cert-footer">
-                    <span class="verification-code">ID: vt4f3JFv4EpSyr7LG</span>
-                    <a href="https://www.theforage.com/simulations/british-airways/data-science" target="_blank" class="cert-link">Verify ↗</a>
-                  </div>
-                </div>
-              </div>
-    
-              <!-- Card 4: Skyscanner Front-End -->
-              <div class="cert-node">
-                <div class="cert-image-wrapper">
-                  <img src="skyscanner-cert.png" alt="Skyscanner Front-End Certificate">
-                  <div class="cert-overlay"></div>
-                </div>
-                <div class="cert-content-block">
-                  <div class="cert-meta-header">
-                    <span class="cert-provider text-cyan">SKYSCANNER // FORAGE</span>
-                    <span class="cert-date">JUNE 18, 2026</span>
-                  </div>
-                  <h4>Front-End Software Engineering</h4>
-                  <p>Architected and built a localized dynamic Backpack React Web Application tracking production-ready user interface components.</p>
-                  <div class="cert-footer">
-                    <span class="verification-code">ID: dTy9BgNY2x7gLN6Wsc</span>
-                    <a href="https://www.theforage.com/simulations/skyscanner/front-end-engineering" target="_blank" class="cert-link">Verify ↗</a>
-                  </div>
-                </div>
-              </div>
-    
-              <!-- Card 5: MongoDB Core Architecture -->
-              <div class="cert-node">
-                <div class="cert-image-wrapper">
-                  <img src="mongodb-cert.png" alt="MongoDB Overview Certificate">
-                  <div class="cert-overlay"></div>
-                </div>
-                <div class="cert-content-block">
-                  <div class="cert-meta-header">
-                    <span class="cert-provider text-silver">MONGODB INC.</span>
-                    <span class="cert-date">JUNE 18, 2026</span>
-                  </div>
-                  <h4>MongoDB Overview: Core Concepts</h4>
-                  <p>Verified proficiency across distributed document models, NoSQL data persistence infrastructure, and cluster sharding architectures.</p>
-                  <div class="cert-footer">
-                    <span class="verification-code">Credly: 4c2d9285...</span>
-                    <a href="https://www.credly.com/badges/4c2d9285-c392-4a9d-bba7-4a9ff9fe8439" target="_blank" class="cert-link">Verify ↗</a>
-                  </div>
-                </div>
-              </div>
-    
-            </div>
-          </div>
-      <div id="projects-quantum" class="bento-box bento-project-flagship">
-        <div class="box-tag">Flagship Build 03 // Advanced Cyber Security</div>
-        <div class="proj-header">
-          <h3>Quantum Shield Auditor</h3>
-          <span class="status-tag accent-cyan">PQC Auto-Fix Engine</span>
-        </div>
-        <p class="proj-subtitle">A full-stack static analysis dashboard designed to scan raw source code for OWASP Top 10 vulnerabilities and instantly refactor legacy cryptographic primitives into quantum-resistant alternatives.</p>
-        
-        <div class="quantum-architecture-grid">
-          <div class="q-node">
-            <h4>Diff-Engine Integration</h4>
-            <p>Integrates <strong>@monaco-editor/react</strong> in side-by-side Diff view mode, highlighting precise security patch changes dynamically.</p>
-          </div>
-          <div class="q-node">
-            <h4>Cryptographic Mitigation</h4>
-            <p>Flags non-quantum-resistant legacy encryption (RSA, ECC, AES-128, MD5) and refactors code into <strong>NIST-approved PQC</strong> models (Crystals-Kyber, Dilithium).</p>
-          </div>
-          <div class="q-node">
-            <h4>Automated Verification</h4>
-            <p>Leverages the <strong>Gemini Code Execution Tool</strong> to instantly draft and run localized Python test scripts, validating both logic integrity and vulnerability mitigation.</p>
-          </div>
-          <div class="q-node">
-            <h4>State Persistence</h4>
-            <p>Engineered with a high-capacity 50MB-limit <strong>Express + SQLite full-stack backend</strong> to log audit snapshots, change summaries, and search queries instantly.</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="contact" class="bento-box bento-contact-terminal">
-        <div class="box-tag">Terminal // Secure Communications Link</div>
-        
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <span class="t-dot red"></span>
-            <span class="t-dot yellow"></span>
-            <span class="t-dot green"></span>
-          </div>
-          <div class="terminal-title">chandru@system:~//establish-link</div>
-        </div>
-
-        <div class="terminal-body">
-          <p class="terminal-intro">&gt;&gt; Initializing secure communication handshake protocol... <span class="blink">_</span></p>
-          
-          <div class="contact-split-grid">
-            <div class="link-matrix">
-              <a href="mailto:lingamchandru53@gmail.com" class="matrix-link-card">
-                <div class="card-meta"><span class="meta-protocol">SMTP // SECURE</span></div>
-                <h4>Direct Mail</h4>
-                <p class="matrix-value">lingamchandru53@gmail.com</p>
-              </a>
-              <a href="https://linkedin.com/in/chandru-lg" target="_blank" class="matrix-link-card">
-                <div class="card-meta"><span class="meta-protocol">HTTPS // VERIFIED</span></div>
-                <h4>LinkedIn Network</h4>
-                <p class="matrix-value">linkedin.com/in/chandru-lg</p>
-              </a>
-            </div>
-
-            <form id="terminal-form" class="secure-form">
-              <div class="form-group">
-                <label class="form-label">IDENT_STRING // NAME</label>
-                <input type="text" id="form-name" class="form-input" placeholder="e.g., Guest User" required />
-              </div>
-              <div class="form-group">
-                <label class="form-label">RETURN_PATH // EMAIL</label>
-                <input type="email" id="form-email" class="form-input" placeholder="e.g., user@network.com" required />
-              </div>
-              <div class="form-group">
-                <label class="form-label">PAYLOAD_DATA // MESSAGE</label>
-                <textarea id="form-message" class="form-input form-textarea" placeholder="Transmission payload data..." required></textarea>
-              </div>
-              <button type="submit" class="form-submit-btn">Transmit Payload ↗</button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <p>© 2026 Chandru Lingam. Core System Compiled Manually.</p>
-      <div class="sys-time">SYS STATUS: OPTIMAL</div>
+<nav id="overlayNav" class="overlay-nav">
+  <div class="overlay-nav-inner">
+    <ol class="overlay-links">
+      <li><a href="#home"         class="overlay-link" data-cursor data-cursor-text="GO"><span class="ol-index">00</span>Home</a></li>
+      <li><a href="#about"        class="overlay-link" data-cursor data-cursor-text="GO"><span class="ol-index">01</span>Mission</a></li>
+      <li><a href="#experience"   class="overlay-link" data-cursor data-cursor-text="GO"><span class="ol-index">02</span>Experience</a></li>
+      <li><a href="#capabilities" class="overlay-link" data-cursor data-cursor-text="GO"><span class="ol-index">03</span>Capabilities</a></li>
+      <li><a href="#projects"     class="overlay-link" data-cursor data-cursor-text="GO"><span class="ol-index">04</span>Projects</a></li>
+      <li><a href="#gallery"      class="overlay-link" data-cursor data-cursor-text="GO"><span class="ol-index">05</span>Achievements</a></li>
+      <li><a href="#credentials"  class="overlay-link" data-cursor data-cursor-text="GO"><span class="ol-index">06</span>Credentials</a></li>
+      <li><a href="#contact"      class="overlay-link" data-cursor data-cursor-text="GO"><span class="ol-index">07</span>Contact</a></li>
+    </ol>
+    <div class="overlay-meta">
+      <p>Nandha College of Technology<br>B.Tech IT — 2024–2028</p>
+      <p><a href="mailto:lingamchandru53@gmail.com" data-cursor>lingamchandru53@gmail.com</a></p>
     </div>
-  </footer>
+  </div>
+  <button id="menuClose" class="menu-close" data-cursor>Close ✕</button>
+</nav>
 
-  <div id="system-modal" class="modal-overlay hidden">
-    <div class="modal-frame">
-      <div class="terminal-header">
-        <div class="terminal-dots">
-          <span class="t-dot red"></span>
-          <span class="t-dot yellow"></span>
-          <span class="t-dot green"></span>
-        </div>
-        <div id="modal-system-title" class="terminal-title">SYSTEM_ALERT // RESOURCE_LOG</div>
+<main>
+
+<!-- =========================================================
+     HERO — profile photo + content + canvas mesh background
+     ========================================================= -->
+<section id="home" class="hero">
+  <div class="hero-bg">
+    <canvas id="meshCanvas"></canvas>
+    <div class="hero-grain"></div>
+    <div class="hero-vignette"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="eyebrow"><span class="dot-live"></span>Open for innovations — 2026</div>
+      <h1 class="hero-title">
+        <span class="line">CHANDRU</span>
+        <span class="line hero-title-accent">LG</span>
+      </h1>
+      <p class="hero-role"><span id="typewriter"></span></p>
+      <p class="hero-bio">B.Tech IT student engineering intelligent architectures, contextual interfaces, and quantum-resistant security systems — built to ship, not just demo.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary" data-cursor data-cursor-text="VIEW">
+          <span>View Projects</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost" data-cursor>Get in Touch</a>
       </div>
-      <div class="modal-body">
-        <p id="modal-text">Handshake sequence verified successfully.</p>
-        <button id="modal-close" class="modal-btn">Acknowledge & Dismiss</button>
+    </div>
+
+    <!-- PROFILE PHOTO -->
+    <div class="hero-portrait" id="heroPortrait">
+      <div class="portrait-frame">
+        <img src="profile1.jpeg" alt="Chandru LG — Systems Engineer" loading="eager"/>
+        <div class="portrait-scanline"></div>
+        <span class="portrait-corner ptl"></span>
+        <span class="portrait-corner pbr"></span>
+      </div>
+      <div class="portrait-tag">
+        <span class="pt-dot"></span>
+        <span>CHANDRU LG · 2026</span>
+      </div>
+      <div class="portrait-stat-pills">
+        <span class="ps-pill violet">AI Architect</span>
+        <span class="ps-pill cyan">PQC Engineer</span>
+        <span class="ps-pill brass">Full-Stack</span>
       </div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-cue-line"><i></i></div>
+  </div>
+</section>
 
+<!-- =========================================================
+     MISSION
+     ========================================================= -->
+<section id="about" class="mission">
+  <div class="section-eyebrow"><span>01</span> Mission</div>
+  <p class="mission-text" id="missionText">
+    Currently deep-diving into Information Technology at Nandha College of Technology.
+    I architect real-world computational logic — converting complex data structures,
+    cryptographic primitives, and language models into systems people can actually trust and use.
+  </p>
+  <div class="mission-meta">
+    <div class="meta-block">
+      <span class="meta-label">Academic Track</span>
+      <span class="meta-value">B.Tech Information Technology</span>
+      <span class="meta-sub">Nandha College of Technology · 2024 — 2028</span>
+    </div>
+    <div class="meta-block">
+      <span class="meta-label">Focus Areas</span>
+      <span class="meta-value">Generative AI · MLOps · Post-Quantum Cryptography</span>
+      <span class="meta-sub">Python, Java, JavaScript / Node.js</span>
+    </div>
+    <div class="meta-block">
+      <span class="meta-label">Industry Experience</span>
+      <span class="meta-value">Web Developer Intern · Codynex Technology</span>
+      <span class="meta-sub">Coimbatore, Tamil Nadu · June 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     EXPERIENCE — Codynex internship with real photo
+     ========================================================= -->
+<section id="experience" class="experience-section">
+  <div class="exp-content">
+    <div class="section-eyebrow"><span>02</span> Experience</div>
+    <h2 class="exp-title">Real work.<br>Real environment.</h2>
+    <p class="exp-desc">15-day production internship as a Web Developer at Codynex Technology — an ISO 9001:2015 certified, MSME-registered software company in Coimbatore, Tamil Nadu. Shipped real full-stack development work alongside a professional engineering team.</p>
+    <div class="exp-specs">
+      <div class="es"><span>Company</span>Codynex Technology, Coimbatore</div>
+      <div class="es"><span>Role</span>Web Developer Intern</div>
+      <div class="es"><span>Duration</span>June 1 – June 15, 2026 · 15 days</div>
+      <div class="es"><span>Certificate ID</span>CDX-INT-2026-121</div>
+      <div class="es"><span>Certifying Body</span>ISO 9001:2015 · MSME Registered</div>
+    </div>
+  </div>
+  <div class="exp-visual">
+    <div class="exp-photo-wrap" id="expPhoto">
+      <img src="codynex-internship.jpg" alt="Chandru LG receiving internship certificate at Codynex Technology, Coimbatore" loading="lazy"/>
+      <div class="exp-photo-overlay">
+        <span>Codynex Technology HQ · Coimbatore</span>
+      </div>
+    </div>
+    <div class="exp-cert-mini">
+      <img src="codynex-cert.png" alt="Codynex Internship Certificate" loading="lazy"/>
+      <span>Certificate · CDX-INT-2026-121</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CAPABILITIES
+     ========================================================= -->
+<section id="capabilities" class="capabilities">
+  <div class="section-eyebrow"><span>03</span> Capabilities</div>
+  <div class="stat-row">
+    <div class="stat">
+      <span class="stat-number" data-count="9">0</span>
+      <span class="stat-label">Verified Credentials</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number" data-count="4">0</span>
+      <span class="stat-label">Competition Podiums</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number" data-count="22" data-suffix="+">0</span>
+      <span class="stat-label">Regional Languages</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number" data-count="40" data-suffix="%">0</span>
+      <span class="stat-label">Branch Wait-Time Cut</span>
+    </div>
+  </div>
+  <div class="matrix-row">
+    <div class="matrix-col">
+      <span class="matrix-col-label">Intelligent Architectures</span>
+      <ul class="matrix-list">
+        <li>Generative AI <em>(Gemini SDK)</em></li>
+        <li>Machine Learning / MLOps</li>
+        <li>Post-Quantum Cryptography</li>
+      </ul>
+    </div>
+    <div class="matrix-col">
+      <span class="matrix-col-label">Core Systems &amp; Languages</span>
+      <ul class="matrix-list">
+        <li>Python <em>(FastAPI / Flask)</em></li>
+        <li>Java <em>(Core &amp; Thread Models)</em></li>
+        <li>JavaScript / Node.js</li>
+      </ul>
+    </div>
+    <div class="matrix-col">
+      <span class="matrix-col-label">Data Engineering &amp; Analytics</span>
+      <ul class="matrix-list">
+        <li>SQL / SQLite Persistence</li>
+        <li>Microsoft Fabric</li>
+        <li>Power BI Analytics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PROJECTS — horizontal pinned scroll
+     ========================================================= -->
+<section id="projects" class="projects-pin">
+  <div class="projects-track" id="projectsTrack">
+
+    <div class="project-intro-panel">
+      <div class="section-eyebrow"><span>04</span> Projects</div>
+      <h2>Three builds.<br>Zero throwaway demos.</h2>
+      <p class="proj-hint">Scroll to move through the work →</p>
+    </div>
+
+    <article class="project-panel" data-accent="violet">
+      <span class="panel-watermark">01</span>
+      <div class="project-panel-meta">
+        <span class="project-index">01 / 03</span>
+        <span class="project-tag">Flagship · Advanced Cyber Security</span>
+      </div>
+      <h3>Quantum Shield Auditor</h3>
+      <p class="project-desc">Full-stack static analysis dashboard that scans source code for OWASP Top 10 vulnerabilities and instantly refactors legacy cryptographic primitives into quantum-resistant alternatives.</p>
+      <div class="project-specs">
+        <div class="spec"><span>Diff Engine</span>Monaco side-by-side diff view with precise security patch highlights</div>
+        <div class="spec"><span>Crypto Mitigation</span>RSA / ECC / AES-128 / MD5 → CRYSTALS-Kyber, Dilithium (NIST PQC)</div>
+        <div class="spec"><span>Verification</span>Gemini Code Execution drafts & runs Python tests against each patch</div>
+        <div class="spec"><span>Persistence</span>Express + SQLite backend logging audit snapshots up to 50MB</div>
+      </div>
+    </article>
+
+    <article class="project-panel" data-accent="cyan">
+      <span class="panel-watermark">02</span>
+      <div class="project-panel-meta">
+        <span class="project-index">02 / 03</span>
+        <span class="project-tag">Featured · Voice Automation</span>
+      </div>
+      <h3>AccountAlly</h3>
+      <p class="project-desc">Multilingual Gen-AI voice assistant deployed for Union Bank of India, built to close the language–logic gap in everyday banking for 22+ regional dialects.</p>
+      <div class="project-specs">
+        <div class="spec"><span>Core Engine</span>Gemini 1.5 Flash translates financial jargon into native analogies</div>
+        <div class="spec"><span>Security</span>On-device PII masking — 100% RBI data sovereignty</div>
+        <div class="spec"><span>Impact</span>Cuts physical branch wait times by 40%</div>
+      </div>
+    </article>
+
+    <article class="project-panel" data-accent="brass">
+      <span class="panel-watermark">03</span>
+      <div class="project-panel-meta">
+        <span class="project-index">03 / 03</span>
+        <span class="project-tag">Featured · Linguistic Localization</span>
+      </div>
+      <h3>Language Mentor</h3>
+      <p class="project-desc">AI-driven technical adaptation model that maps programming paradigms to contextual native-language analogies for faster technical learning.</p>
+      <div class="project-specs">
+        <div class="spec"><span>Core Mission</span>Maps engineering concepts to localized analogies dynamically</div>
+        <div class="spec"><span>Recognition</span>2nd Place — Nandha's Innovation Day '26</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     MILESTONES MARQUEE
+     ========================================================= -->
+<section class="milestones">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="milestone">🏆 1st Prize — YUGAM 2K26, IEEE Kongu Student Branch</span>
+      <span class="milestone">🥈 2nd Place — Nandha's Innovation Day '26, Edition 15</span>
+      <span class="milestone">🥈 2nd Prize — TechSprint Hackathon, Hack with GDG S3</span>
+      <span class="milestone">🎓 Selected Presenter — National Science Day, Vellalar College</span>
+      <span class="milestone">📡 Campus Ambassador — CodeEmy Technologies</span>
+      <span class="milestone">🌱 Seminar Presenter — Karpagam Institute of Technology</span>
+      <span class="milestone">💼 Web Dev Intern — Codynex Technology, Coimbatore</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span class="milestone">🏆 1st Prize — YUGAM 2K26, IEEE Kongu Student Branch</span>
+      <span class="milestone">🥈 2nd Place — Nandha's Innovation Day '26, Edition 15</span>
+      <span class="milestone">🥈 2nd Prize — TechSprint Hackathon, Hack with GDG S3</span>
+      <span class="milestone">🎓 Selected Presenter — National Science Day, Vellalar College</span>
+      <span class="milestone">📡 Campus Ambassador — CodeEmy Technologies</span>
+      <span class="milestone">🌱 Seminar Presenter — Karpagam Institute of Technology</span>
+      <span class="milestone">💼 Web Dev Intern — Codynex Technology, Coimbatore</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ACHIEVEMENTS GALLERY
+     ========================================================= -->
+<section id="gallery" class="gallery">
+  <div class="gallery-wrap">
+    <div class="section-eyebrow"><span>05</span> On the Ground</div>
+    <h2 class="gallery-title">Six rooms.<br>Six wins.</h2>
+    <div class="gallery-grid">
+      <figure class="gallery-card gc-large" data-cursor data-cursor-text="VIEW">
+        <img src="yugam-achievement.jpg" alt="1st Prize at YUGAM 2K26 — IEEE Kongu Engineering College" loading="lazy"/>
+        <figcaption>
+          <span class="gc-tag trophy">🏆 1st Prize</span>
+          <span class="gc-title">YUGAM 2K26 — IEEE Kongu Student Branch</span>
+        </figcaption>
+      </figure>
+      <figure class="gallery-card" data-cursor data-cursor-text="VIEW">
+        <img src="innovation-day.jpg" alt="2nd Place at Nandha Innovation Day 2026" loading="lazy"/>
+        <figcaption>
+          <span class="gc-tag">🥈 2nd Place</span>
+          <span class="gc-title">Nandha's Innovation Day '26</span>
+        </figcaption>
+      </figure>
+      <figure class="gallery-card" data-cursor data-cursor-text="VIEW">
+        <img src="techsprint-hackathon.jpg" alt="2nd Prize at TechSprint Hackathon GDG S3" loading="lazy"/>
+        <figcaption>
+          <span class="gc-tag">🥈 2nd Prize</span>
+          <span class="gc-title">TechSprint Hackathon · GDG S3</span>
+        </figcaption>
+      </figure>
+      <figure class="gallery-card gc-tall" data-cursor data-cursor-text="VIEW">
+        <img src="science-day.jpg" alt="Selected Presenter at National Science Day, Vellalar College" loading="lazy"/>
+        <figcaption>
+          <span class="gc-tag">🎓 Presenter</span>
+          <span class="gc-title">National Science Day · Vellalar College</span>
+        </figcaption>
+      </figure>
+      <figure class="gallery-card" data-cursor data-cursor-text="VIEW">
+        <img src="karpagam-seminar.jpg" alt="Seminar presenter at Karpagam Institute of Technology" loading="lazy"/>
+        <figcaption>
+          <span class="gc-tag">🌱 Seminar</span>
+          <span class="gc-title">Deep Learning Seminar · Karpagam IT</span>
+        </figcaption>
+      </figure>
+      <figure class="gallery-card" data-cursor data-cursor-text="VIEW">
+        <img src="codynex-internship.jpg" alt="Chandru at Codynex Technology internship" loading="lazy"/>
+        <figcaption>
+          <span class="gc-tag">💼 Internship</span>
+          <span class="gc-title">Codynex Technology · Coimbatore</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CREDENTIALS — all 9 with real certificate images
+     ========================================================= -->
+<section id="credentials" class="credentials">
+  <div class="section-eyebrow"><span>06</span> Credentials</div>
+  <h2 class="credentials-title">Nine verified.<br>One internship.</h2>
+
+  <div class="credentials-grid">
+
+    <a href="https://www.theforage.com/simulations/deloitte/cyber-security" target="_blank" class="cred-card" data-accent="green" data-cursor>
+      <div class="cred-thumb"><img src="deloitte-cert.png" alt="Deloitte Cyber Job Simulation Certificate" loading="lazy"/></div>
+      <div class="cred-top"><span>DELOITTE // FORAGE</span><span>Jun 18, 2026</span></div>
+      <h4>Cyber Job Simulation</h4>
+      <p>Foundational cyber security principles and analysis frameworks within corporate infrastructure.</p>
+      <span class="cred-id">ID: 5fgpGidNonZCAo4G6 ↗</span>
+    </a>
+
+    <a href="https://www.theforage.com/simulations/tata/genai-data-analytics" target="_blank" class="cred-card" data-accent="cyan" data-cursor>
+      <div class="cred-thumb"><img src="tata-cert.png" alt="TATA GenAI Powered Data Analytics Certificate" loading="lazy"/></div>
+      <div class="cred-top"><span>TATA // FORAGE</span><span>Jun 17, 2026</span></div>
+      <h4>GenAI Powered Data Analytics</h4>
+      <p>Exploratory data analysis, risk profiling, and AI-driven collections strategy modeling.</p>
+      <span class="cred-id">ID: jYb8MQQ75aGZhrLES ↗</span>
+    </a>
+
+    <a href="https://www.theforage.com/simulations/british-airways/data-science" target="_blank" class="cred-card" data-accent="violet" data-cursor>
+      <div class="cred-thumb"><img src="ba-cert.png" alt="British Airways Data Science Certificate" loading="lazy"/></div>
+      <div class="cred-top"><span>BRITISH AIRWAYS // FORAGE</span><span>Jun 18, 2026</span></div>
+      <h4>Data Science Job Simulation</h4>
+      <p>Lounge eligibility modeling at Heathrow T3 and predictive metrics for buying behavior.</p>
+      <span class="cred-id">ID: vt4f3JFv4EpSyr7LG ↗</span>
+    </a>
+
+    <a href="https://www.theforage.com/simulations/skyscanner/front-end-engineering" target="_blank" class="cred-card" data-accent="cyan" data-cursor>
+      <div class="cred-thumb"><img src="skyscanner-cert.png" alt="Skyscanner Front-End Engineering Certificate" loading="lazy"/></div>
+      <div class="cred-top"><span>SKYSCANNER // FORAGE</span><span>Jun 18, 2026</span></div>
+      <h4>Front-End Software Engineering</h4>
+      <p>Localized dynamic Backpack React app with production-ready UI components.</p>
+      <span class="cred-id">ID: dTy9BgNY2x7gLN6Wsc ↗</span>
+    </a>
+
+    <a href="https://www.credly.com/badges/4c2d9285-c392-4a9d-bba7-4a9ff9fe8439" target="_blank" class="cred-card" data-accent="slate" data-cursor>
+      <div class="cred-thumb"><img src="mongodb-cert.png" alt="MongoDB Overview Core Concepts Certificate" loading="lazy"/></div>
+      <div class="cred-top"><span>MONGODB INC.</span><span>Jun 18, 2026</span></div>
+      <h4>MongoDB Overview: Core Concepts</h4>
+      <p>Distributed document models, NoSQL persistence, and cluster sharding architecture.</p>
+      <span class="cred-id">Credly: 4c2d9285… ↗</span>
+    </a>
+
+    <a href="https://www.credly.com/badges/1b5a5dc5-1d38-4c64-b64f-019793791def" target="_blank" class="cred-card" data-accent="slate" data-cursor>
+      <div class="cred-thumb"><img src="mongodb-indexing-cert.png" alt="MongoDB Indexing Design Fundamentals Certificate" loading="lazy"/></div>
+      <div class="cred-top"><span>MONGODB INC.</span><span>Jun 23, 2026</span></div>
+      <h4>MongoDB Indexing Design Fundamentals</h4>
+      <p>Advanced index strategies, compound indexing, and performance tuning for high-throughput systems.</p>
+      <span class="cred-id">Credly: 1b5a5dc5… ↗</span>
+    </a>
+
+    <a href="https://www.credly.com/go/uc1Ar1Si" target="_blank" class="cred-card" data-accent="violet" data-cursor>
+      <div class="cred-thumb cred-thumb-contain"><img src="qualcomm-ai-cert.png" alt="Qualcomm AI Upskilling Certificate" loading="lazy"/></div>
+      <div class="cred-top"><span>QUALCOMM ACADEMY</span><span>Jun 24–25, 2026</span></div>
+      <h4>AI Upskilling: Model to App</h4>
+      <p>End-to-end AI product pipeline — model selection, optimization, and deployment on Qualcomm edge silicon.</p>
+      <span class="cred-id">Credly: uc1Ar1Si · ID: 8WTRAM1AEr ↗</span>
+    </a>
+
+    <a href="https://www.codeemy.in" target="_blank" class="cred-card" data-accent="brass" data-cursor>
+      <div class="cred-thumb"><img src="codeemy-certificate.png" alt="CodeEmy Campus Ambassador Certificate" loading="lazy"/></div>
+      <div class="cred-top"><span>CODEEMY TECHNOLOGIES</span><span>Mar 2026</span></div>
+      <h4>Campus Ambassador Recognition</h4>
+      <p>Leadership and outreach driving CodeEmy's student-tech community growth across campus.</p>
+      <span class="cred-id">ID: ACTCAC2025/13155 ↗</span>
+    </a>
+
+    <a href="https://codynex.in" target="_blank" class="cred-card" data-accent="violet" data-cursor>
+      <div class="cred-thumb"><img src="codynex-cert.png" alt="Codynex Technology Internship Certificate" loading="lazy"/></div>
+      <div class="cred-top"><span>CODYNEX TECHNOLOGY</span><span>Jun 15, 2026</span></div>
+      <h4>Web Developer Internship</h4>
+      <p>15-day production internship at ISO 9001:2015 certified Codynex Technology, Coimbatore — real full-stack engineering work.</p>
+      <span class="cred-id">CDX-INT-2026-121 · ISO 9001:2015 ↗</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     CONTACT
+     ========================================================= -->
+<section id="contact" class="contact">
+  <div class="contact-bg"><div class="hero-grain"></div></div>
+  <div class="section-eyebrow"><span>07</span> Contact</div>
+  <h2 class="contact-title">Let's build<br>something <span>real</span>.</h2>
+
+  <div class="contact-grid">
+    <div class="contact-links">
+      <a href="mailto:lingamchandru53@gmail.com" class="contact-link" data-cursor data-cursor-text="MAIL">
+        <span class="cl-label">Direct Mail</span>
+        <span class="cl-value">lingamchandru53@gmail.com</span>
+      </a>
+      <a href="https://linkedin.com/in/chandru-lg" target="_blank" class="contact-link" data-cursor data-cursor-text="OPEN">
+        <span class="cl-label">LinkedIn Network</span>
+        <span class="cl-value">linkedin.com/in/chandru-lg</span>
+      </a>
+      <div class="contact-profile-mini">
+        <img src="profile1.jpeg" alt="Chandru LG" loading="lazy"/>
+        <div>
+          <strong>Chandru LG</strong>
+          <span>B.Tech IT · Nandha College</span>
+        </div>
+      </div>
+    </div>
+
+    <form id="contactForm" class="contact-form">
+      <div class="form-row">
+        <label for="cf-name">Name</label>
+        <input type="text" id="cf-name" placeholder="Your name" required/>
+      </div>
+      <div class="form-row">
+        <label for="cf-email">Email</label>
+        <input type="email" id="cf-email" placeholder="your@email.com" required/>
+      </div>
+      <div class="form-row">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" placeholder="What are you building?" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" data-cursor data-cursor-text="SEND">
+        <span>Send Message</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <span>© 2026 Chandru Lingam. Built &amp; compiled manually.</span>
+  <span class="footer-status"><span class="rec-dot"></span>System status: optimal</span>
+</footer>
+
+<div id="toast" class="toast"><p id="toastText"></p></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
