@@ -30,6 +30,9 @@
   <div class="preloader-bar"><span id="preloaderBarFill"></span></div>
 </div>
 
+<!-- LIQUID LIGHT-WIPE — one-shot transition sweep between preloader and hero -->
+<div class="liquid-wipe" id="liquidWipe"></div>
+
 <!-- SCROLL PROGRESS -->
 <div class="scroll-prog"><span id="scrollProg"></span></div>
 
@@ -87,8 +90,8 @@
     <div class="hero-content">
       <div class="eyebrow"><span class="dot-live"></span>Open for innovations — 2026</div>
       <h1 class="hero-title">
-        <span class="line">CHANDRU</span>
-        <span class="line hero-title-accent">LG</span>
+        <span class="line">CHANDRU<span class="line-glow" aria-hidden="true">CHANDRU</span></span>
+        <span class="line hero-title-accent">LG<span class="line-glow" aria-hidden="true">LG</span></span>
       </h1>
       <p class="hero-role"><span id="typewriter"></span></p>
       <p class="hero-bio">B.Tech IT student engineering intelligent architectures, contextual interfaces, and quantum-resistant security systems — built to ship, not just demo.</p>
@@ -384,80 +387,120 @@
   <div class="section-eyebrow"><span>06</span> Credentials</div>
   <h2 class="credentials-title">Nine verified.<br>One internship.</h2>
 
-  <div class="credentials-grid">
+  <div class="cred-slider">
+    <div class="cred-track" id="credTrack">
 
-    <a href="https://www.theforage.com/simulations/deloitte/cyber-security" target="_blank" class="cred-card" data-accent="green" data-cursor>
+    <a href="https://www.theforage.com/simulations/deloitte/cyber-security" target="_blank" class="cred-slide" data-accent="green" data-cursor>
+      <span class="cred-slide-num">01</span>
       <div class="cred-thumb"><img src="deloitte-cert.png" alt="Deloitte Cyber Job Simulation Certificate" loading="lazy"/></div>
-      <div class="cred-top"><span>DELOITTE // FORAGE</span><span>Jun 18, 2026</span></div>
-      <h4>Cyber Job Simulation</h4>
-      <p>Foundational cyber security principles and analysis frameworks within corporate infrastructure.</p>
-      <span class="cred-id">ID: 5fgpGidNonZCAo4G6 ↗</span>
+      <div class="cred-slide-body">
+        <div class="cred-top"><span>DELOITTE // FORAGE</span><span>Jun 18, 2026</span></div>
+        <h4>Cyber Job Simulation</h4>
+        <p>Foundational cyber security principles and analysis frameworks within corporate infrastructure.</p>
+        <span class="cred-id">ID: 5fgpGidNonZCAo4G6 ↗</span>
+      </div>
     </a>
 
-    <a href="https://www.theforage.com/simulations/tata/genai-data-analytics" target="_blank" class="cred-card" data-accent="cyan" data-cursor>
+    <a href="https://www.theforage.com/simulations/tata/genai-data-analytics" target="_blank" class="cred-slide" data-accent="cyan" data-cursor>
+      <span class="cred-slide-num">02</span>
       <div class="cred-thumb"><img src="tata-cert.png" alt="TATA GenAI Powered Data Analytics Certificate" loading="lazy"/></div>
-      <div class="cred-top"><span>TATA // FORAGE</span><span>Jun 17, 2026</span></div>
-      <h4>GenAI Powered Data Analytics</h4>
-      <p>Exploratory data analysis, risk profiling, and AI-driven collections strategy modeling.</p>
-      <span class="cred-id">ID: jYb8MQQ75aGZhrLES ↗</span>
+      <div class="cred-slide-body">
+        <div class="cred-top"><span>TATA // FORAGE</span><span>Jun 17, 2026</span></div>
+        <h4>GenAI Powered Data Analytics</h4>
+        <p>Exploratory data analysis, risk profiling, and AI-driven collections strategy modeling.</p>
+        <span class="cred-id">ID: jYb8MQQ75aGZhrLES ↗</span>
+      </div>
     </a>
 
-    <a href="https://www.theforage.com/simulations/british-airways/data-science" target="_blank" class="cred-card" data-accent="violet" data-cursor>
+    <a href="https://www.theforage.com/simulations/british-airways/data-science" target="_blank" class="cred-slide" data-accent="violet" data-cursor>
+      <span class="cred-slide-num">03</span>
       <div class="cred-thumb"><img src="ba-cert.png" alt="British Airways Data Science Certificate" loading="lazy"/></div>
-      <div class="cred-top"><span>BRITISH AIRWAYS // FORAGE</span><span>Jun 18, 2026</span></div>
-      <h4>Data Science Job Simulation</h4>
-      <p>Lounge eligibility modeling at Heathrow T3 and predictive metrics for buying behavior.</p>
-      <span class="cred-id">ID: vt4f3JFv4EpSyr7LG ↗</span>
+      <div class="cred-slide-body">
+        <div class="cred-top"><span>BRITISH AIRWAYS // FORAGE</span><span>Jun 18, 2026</span></div>
+        <h4>Data Science Job Simulation</h4>
+        <p>Lounge eligibility modeling at Heathrow T3 and predictive metrics for buying behavior.</p>
+        <span class="cred-id">ID: vt4f3JFv4EpSyr7LG ↗</span>
+      </div>
     </a>
 
-    <a href="https://www.theforage.com/simulations/skyscanner/front-end-engineering" target="_blank" class="cred-card" data-accent="cyan" data-cursor>
+    <a href="https://www.theforage.com/simulations/skyscanner/front-end-engineering" target="_blank" class="cred-slide" data-accent="cyan" data-cursor>
+      <span class="cred-slide-num">04</span>
       <div class="cred-thumb"><img src="skyscanner-cert.png" alt="Skyscanner Front-End Engineering Certificate" loading="lazy"/></div>
-      <div class="cred-top"><span>SKYSCANNER // FORAGE</span><span>Jun 18, 2026</span></div>
-      <h4>Front-End Software Engineering</h4>
-      <p>Localized dynamic Backpack React app with production-ready UI components.</p>
-      <span class="cred-id">ID: dTy9BgNY2x7gLN6Wsc ↗</span>
+      <div class="cred-slide-body">
+        <div class="cred-top"><span>SKYSCANNER // FORAGE</span><span>Jun 18, 2026</span></div>
+        <h4>Front-End Software Engineering</h4>
+        <p>Localized dynamic Backpack React app with production-ready UI components.</p>
+        <span class="cred-id">ID: dTy9BgNY2x7gLN6Wsc ↗</span>
+      </div>
     </a>
 
-    <a href="https://www.credly.com/badges/4c2d9285-c392-4a9d-bba7-4a9ff9fe8439" target="_blank" class="cred-card" data-accent="slate" data-cursor>
+    <a href="https://www.credly.com/badges/4c2d9285-c392-4a9d-bba7-4a9ff9fe8439" target="_blank" class="cred-slide" data-accent="slate" data-cursor>
+      <span class="cred-slide-num">05</span>
       <div class="cred-thumb"><img src="mongodb-cert.png" alt="MongoDB Overview Core Concepts Certificate" loading="lazy"/></div>
-      <div class="cred-top"><span>MONGODB INC.</span><span>Jun 18, 2026</span></div>
-      <h4>MongoDB Overview: Core Concepts</h4>
-      <p>Distributed document models, NoSQL persistence, and cluster sharding architecture.</p>
-      <span class="cred-id">Credly: 4c2d9285… ↗</span>
+      <div class="cred-slide-body">
+        <div class="cred-top"><span>MONGODB INC.</span><span>Jun 18, 2026</span></div>
+        <h4>MongoDB Overview: Core Concepts</h4>
+        <p>Distributed document models, NoSQL persistence, and cluster sharding architecture.</p>
+        <span class="cred-id">Credly: 4c2d9285… ↗</span>
+      </div>
     </a>
 
-    <a href="https://www.credly.com/badges/1b5a5dc5-1d38-4c64-b64f-019793791def" target="_blank" class="cred-card" data-accent="slate" data-cursor>
+    <a href="https://www.credly.com/badges/1b5a5dc5-1d38-4c64-b64f-019793791def" target="_blank" class="cred-slide" data-accent="slate" data-cursor>
+      <span class="cred-slide-num">06</span>
       <div class="cred-thumb"><img src="mongodb-indexing-cert.png" alt="MongoDB Indexing Design Fundamentals Certificate" loading="lazy"/></div>
-      <div class="cred-top"><span>MONGODB INC.</span><span>Jun 23, 2026</span></div>
-      <h4>MongoDB Indexing Design Fundamentals</h4>
-      <p>Advanced index strategies, compound indexing, and performance tuning for high-throughput systems.</p>
-      <span class="cred-id">Credly: 1b5a5dc5… ↗</span>
+      <div class="cred-slide-body">
+        <div class="cred-top"><span>MONGODB INC.</span><span>Jun 23, 2026</span></div>
+        <h4>MongoDB Indexing Design Fundamentals</h4>
+        <p>Advanced index strategies, compound indexing, and performance tuning for high-throughput systems.</p>
+        <span class="cred-id">Credly: 1b5a5dc5… ↗</span>
+      </div>
     </a>
 
-    <a href="https://www.credly.com/go/uc1Ar1Si" target="_blank" class="cred-card" data-accent="violet" data-cursor>
+    <a href="https://www.credly.com/go/uc1Ar1Si" target="_blank" class="cred-slide" data-accent="violet" data-cursor>
+      <span class="cred-slide-num">07</span>
       <div class="cred-thumb cred-thumb-contain"><img src="qualcomm-ai-cert.png" alt="Qualcomm AI Upskilling Certificate" loading="lazy"/></div>
-      <div class="cred-top"><span>QUALCOMM ACADEMY</span><span>Jun 24–25, 2026</span></div>
-      <h4>AI Upskilling: Model to App</h4>
-      <p>End-to-end AI product pipeline — model selection, optimization, and deployment on Qualcomm edge silicon.</p>
-      <span class="cred-id">Credly: uc1Ar1Si · ID: 8WTRAM1AEr ↗</span>
+      <div class="cred-slide-body">
+        <div class="cred-top"><span>QUALCOMM ACADEMY</span><span>Jun 24–25, 2026</span></div>
+        <h4>AI Upskilling: Model to App</h4>
+        <p>End-to-end AI product pipeline — model selection, optimization, and deployment on Qualcomm edge silicon.</p>
+        <span class="cred-id">Credly: uc1Ar1Si · ID: 8WTRAM1AEr ↗</span>
+      </div>
     </a>
 
-    <a href="https://www.codeemy.in" target="_blank" class="cred-card" data-accent="brass" data-cursor>
+    <a href="https://www.codeemy.in" target="_blank" class="cred-slide" data-accent="brass" data-cursor>
+      <span class="cred-slide-num">08</span>
       <div class="cred-thumb"><img src="codeemy-certificate.png" alt="CodeEmy Campus Ambassador Certificate" loading="lazy"/></div>
-      <div class="cred-top"><span>CODEEMY TECHNOLOGIES</span><span>Mar 2026</span></div>
-      <h4>Campus Ambassador Recognition</h4>
-      <p>Leadership and outreach driving CodeEmy's student-tech community growth across campus.</p>
-      <span class="cred-id">ID: ACTCAC2025/13155 ↗</span>
+      <div class="cred-slide-body">
+        <div class="cred-top"><span>CODEEMY TECHNOLOGIES</span><span>Mar 2026</span></div>
+        <h4>Campus Ambassador Recognition</h4>
+        <p>Leadership and outreach driving CodeEmy's student-tech community growth across campus.</p>
+        <span class="cred-id">ID: ACTCAC2025/13155 ↗</span>
+      </div>
     </a>
 
-    <a href="https://codynex.in" target="_blank" class="cred-card" data-accent="violet" data-cursor>
+    <a href="https://codynex.in" target="_blank" class="cred-slide" data-accent="violet" data-cursor>
+      <span class="cred-slide-num">09</span>
       <div class="cred-thumb"><img src="codynex-cert.png" alt="Codynex Technology Internship Certificate" loading="lazy"/></div>
-      <div class="cred-top"><span>CODYNEX TECHNOLOGY</span><span>Jun 15, 2026</span></div>
-      <h4>Web Developer Internship</h4>
-      <p>15-day production internship at ISO 9001:2015 certified Codynex Technology, Coimbatore — real full-stack engineering work.</p>
-      <span class="cred-id">CDX-INT-2026-121 · ISO 9001:2015 ↗</span>
+      <div class="cred-slide-body">
+        <div class="cred-top"><span>CODYNEX TECHNOLOGY</span><span>Jun 15, 2026</span></div>
+        <h4>Web Developer Internship</h4>
+        <p>15-day production internship at ISO 9001:2015 certified Codynex Technology, Coimbatore — real full-stack engineering work.</p>
+        <span class="cred-id">CDX-INT-2026-121 · ISO 9001:2015 ↗</span>
+      </div>
     </a>
 
+    </div>
+
+    <div class="cred-slider-controls">
+      <button class="cred-nav cred-prev" aria-label="Previous credential" data-cursor>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="cred-progress"><div class="cred-progress-fill" id="credProgFill"></div></div>
+      <span class="cred-counter"><span id="credCounterCurrent">01</span> / 09</span>
+      <button class="cred-nav cred-next" aria-label="Next credential" data-cursor>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
   </div>
 </section>
 

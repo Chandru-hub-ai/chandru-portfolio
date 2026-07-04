@@ -60,7 +60,18 @@ img{display:block;max-width:100%}
 .preloader-hud{position:absolute;top:32px;left:0;right:0;display:flex;justify-content:space-between;padding:0 32px;font-family:var(--font-m);font-size:.7rem;letter-spacing:1.5px;color:var(--ink-muted);text-transform:uppercase}
 .hud-status{color:var(--cyan)}.hud-counter{color:var(--ink);font-weight:500}.hud-label{color:var(--ink-faint)}
 .preloader-name{font-family:var(--font-d);font-weight:800;font-size:clamp(2.5rem,12vw,9rem);letter-spacing:-2px;display:flex;flex-wrap:wrap;justify-content:center;text-align:center;padding:0 5vw}
-.preloader-name span{display:inline-block;opacity:0;transform:translateY(60px);background:linear-gradient(120deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.preloader-name span{display:inline-block;opacity:0;background:linear-gradient(120deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;will-change:transform,opacity}
+
+/* Liquid light-wipe — one-shot transition glow between preloader and hero.
+   Driven entirely by app.js via the --wx custom property; sits idle at
+   opacity:0 the rest of the time, so it costs nothing after it plays once. */
+.liquid-wipe{
+  position:fixed;inset:0;z-index:19999;pointer-events:none;opacity:0;
+  background:radial-gradient(ellipse 42% 60% at var(--wx,-30%) 50%,
+    rgba(139,92,246,.95) 0%, rgba(0,229,200,.55) 48%, transparent 74%);
+  filter:blur(38px) saturate(1.3);
+  mix-blend-mode:screen;
+}
 .preloader-bar{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);width:min(420px,70vw);height:2px;background:var(--border-str);overflow:hidden}
 .preloader-bar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--violet),var(--cyan))}
 
@@ -131,8 +142,23 @@ body.nav-open .site-header{opacity:0;pointer-events:none}
 @keyframes pulseRing{0%{transform:scale(.6);opacity:.7}100%{transform:scale(2.2);opacity:0}}
 
 .hero-title{font-family:var(--font-d);font-weight:800;font-size:clamp(3rem,9vw,7.5rem);line-height:.92;letter-spacing:-3px;margin-bottom:1.8rem}
-.hero-title .line{display:block;overflow:hidden}
+.hero-title .line{display:block;overflow:hidden;position:relative}
+/* Starts dim/muted so the spotlight sweep has real contrast to reveal against —
+   a bright glow on already-near-white text (--ink is #F4F5F7) was invisible.
+   :not() keeps this from touching the LG gradient-clip line below. */
+.hero-title .line:not(.hero-title-accent){color:var(--ink-faint)}
 .hero-title-accent{background:linear-gradient(120deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Spotlight sweep — a bright duplicate of the headline, visible only through
+   a soft moving mask. Plays once on load (driven from app.js), not a loop,
+   so it costs nothing during scroll. */
+.line-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(100deg,#fff 15%,#f6efff 45%,#cdb8ff 58%,#fff 85%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-mask-image:radial-gradient(ellipse 20% 260% at var(--mx,-40%) 50%,#000 35%,transparent 78%);
+  mask-image:radial-gradient(ellipse 20% 260% at var(--mx,-40%) 50%,#000 35%,transparent 78%);
+}
 .hero-role{font-family:var(--font-m);font-size:1.05rem;color:var(--cyan);margin-bottom:1.2rem;min-height:1.5rem}
 .cursor-blink{animation:cursorBlink 1s step-end infinite}
 @keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
@@ -257,29 +283,69 @@ body.nav-open .site-header{opacity:0;pointer-events:none}
 .credentials{padding:12vh 6vw 10vh;max-width:1300px;margin:0 auto;position:relative}
 .credentials::before{content:'';position:absolute;top:-5%;right:5%;width:40%;height:40%;background:radial-gradient(circle,var(--brass-soft),transparent 70%);pointer-events:none;z-index:-1}
 .credentials-title{font-family:var(--font-d);font-weight:800;font-size:clamp(1.9rem,4.5vw,3.4rem);letter-spacing:-1.5px;line-height:1.1;margin-bottom:3.5rem}
-.credentials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.4rem}
-.cred-card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:1.5rem;position:relative;overflow:hidden;transition:transform .4s var(--ease),border-color .4s var(--ease);contain:layout paint style}
-.cred-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-.cred-card[data-accent="green"]::before{background:var(--green)}
-.cred-card[data-accent="cyan"]::before{background:var(--cyan)}
-.cred-card[data-accent="violet"]::before{background:var(--violet)}
-.cred-card[data-accent="slate"]::before{background:var(--slate)}
-.cred-card[data-accent="brass"]::before{background:var(--brass)}
-.cred-card:hover{transform:translateY(-5px);border-color:var(--border-str)}
-.cred-card:hover::before{transform:scaleX(1)}
-.cred-thumb{width:100%;aspect-ratio:16/10;border-radius:8px;overflow:hidden;margin-bottom:1.1rem;background:#fff;border:1px solid var(--border)}
+
+/* ===== Credential slide carousel ===== */
+.cred-slider{position:relative}
+.cred-track{
+  display:flex;gap:1.6rem;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:.5rem 4vw 2.5rem;margin:0 -4vw;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;scroll-padding-inline:4vw;
+}
+.cred-track::-webkit-scrollbar{display:none}
+.cred-slide{
+  scroll-snap-align:center;flex:0 0 min(84vw,460px);
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:1.7rem;
+  transform:scale(.93);opacity:.5;filter:saturate(.7);
+  transition:transform .5s var(--ease),opacity .5s var(--ease),filter .5s var(--ease),border-color .4s var(--ease);
+  contain:layout paint style;
+}
+/* The focused-slide effect is what gives this the "premium" carousel feel —
+   only the centered card is at full scale/opacity, everything else recedes. */
+.cred-slide.is-active{transform:scale(1);opacity:1;filter:saturate(1);border-color:var(--border-str)}
+.cred-slide::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.cred-slide.is-active::before{transform:scaleX(1)}
+.cred-slide[data-accent="green"]::before{background:var(--green)}
+.cred-slide[data-accent="cyan"]::before{background:var(--cyan)}
+.cred-slide[data-accent="violet"]::before{background:var(--violet)}
+.cred-slide[data-accent="slate"]::before{background:var(--slate)}
+.cred-slide[data-accent="brass"]::before{background:var(--brass)}
+.cred-slide-num{
+  position:absolute;top:.9rem;right:1.2rem;font-family:var(--font-d);font-weight:800;
+  font-size:3.2rem;color:var(--ink);opacity:.06;line-height:1;pointer-events:none;z-index:0;
+}
+.cred-thumb{width:100%;aspect-ratio:16/10;border-radius:10px;overflow:hidden;margin-bottom:1.1rem;background:#fff;border:1px solid var(--border);position:relative;z-index:1}
 .cred-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .6s var(--ease)}
 .cred-thumb-contain img{object-fit:contain;padding:8px;background:#fff}
-.cred-card:hover .cred-thumb img{transform:scale(1.06)}
+.cred-slide.is-active .cred-thumb img{transform:scale(1.04)}
+.cred-slide-body{position:relative;z-index:1;display:flex;flex-direction:column;flex-grow:1}
 .cred-top{display:flex;justify-content:space-between;font-family:var(--font-m);font-size:.63rem;letter-spacing:.6px;color:var(--ink-faint);margin-bottom:.9rem}
-.cred-card[data-accent="green"] .cred-top span:first-child{color:var(--green)}
-.cred-card[data-accent="cyan"] .cred-top span:first-child{color:var(--cyan)}
-.cred-card[data-accent="violet"] .cred-top span:first-child{color:var(--violet)}
-.cred-card[data-accent="slate"] .cred-top span:first-child{color:var(--slate)}
-.cred-card[data-accent="brass"] .cred-top span:first-child{color:var(--brass)}
-.cred-card h4{font-family:var(--font-d);font-weight:700;font-size:1.05rem;margin-bottom:.55rem}
-.cred-card p{font-size:.84rem;color:var(--ink-muted);line-height:1.5;margin-bottom:1.2rem;flex-grow:1}
+.cred-slide[data-accent="green"] .cred-top span:first-child{color:var(--green)}
+.cred-slide[data-accent="cyan"] .cred-top span:first-child{color:var(--cyan)}
+.cred-slide[data-accent="violet"] .cred-top span:first-child{color:var(--violet)}
+.cred-slide[data-accent="slate"] .cred-top span:first-child{color:var(--slate)}
+.cred-slide[data-accent="brass"] .cred-top span:first-child{color:var(--brass)}
+.cred-slide h4{font-family:var(--font-d);font-weight:700;font-size:1.1rem;margin-bottom:.55rem}
+.cred-slide p{font-size:.87rem;color:var(--ink-muted);line-height:1.5;margin-bottom:1.2rem;flex-grow:1}
 .cred-id{font-family:var(--font-m);font-size:.68rem;color:var(--ink-faint);border-top:1px solid var(--border);padding-top:.85rem;margin-top:auto}
+
+.cred-slider-controls{display:flex;align-items:center;gap:1.1rem;margin-top:.5rem;padding:0 .2rem}
+.cred-nav{
+  width:42px;height:42px;flex:0 0 auto;border-radius:50%;border:1px solid var(--border);
+  background:var(--panel);color:var(--ink);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:border-color .3s var(--ease),background .3s var(--ease),transform .2s var(--ease);
+}
+.cred-nav:hover{border-color:var(--violet);color:var(--violet);transform:translateY(-2px)}
+.cred-nav:active{transform:translateY(0)}
+.cred-progress{flex-grow:1;height:2px;background:var(--border);border-radius:2px;overflow:hidden}
+.cred-progress-fill{height:100%;width:11.11%;background:var(--violet);border-radius:2px;transition:width .45s var(--ease)}
+.cred-counter{font-family:var(--font-m);font-size:.75rem;color:var(--ink-faint);letter-spacing:.5px;white-space:nowrap}
+.cred-counter #credCounterCurrent{color:var(--ink)}
+
+@media (max-width:640px){
+  .cred-slide{flex-basis:88vw;padding:1.3rem}
+  .cred-nav{width:38px;height:38px}
+}
 
 /* ── CONTACT ─────────────────────────────────────────────────────────────── */
 .contact{position:relative;padding:14vh 6vw;background:var(--panel);overflow:hidden}
@@ -335,7 +401,7 @@ body.nav-open .site-header{opacity:0;pointer-events:none}
   .mission-meta{grid-template-columns:1fr}
   .project-intro-panel{width:88vw}.project-panel{width:92vw;padding:0 6vw}
   .project-specs{grid-template-columns:1fr}
-  .credentials-grid{grid-template-columns:1fr}
+  .cred-slide{flex-basis:88vw}
   .gallery-grid{grid-template-columns:1fr;grid-auto-rows:220px}
   .gc-large{grid-column:span 1}.gc-tall{grid-row:span 1}
   .hud-bottom-left,.hud-bottom-right{font-size:.58rem}

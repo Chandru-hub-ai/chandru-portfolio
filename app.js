@@ -105,6 +105,7 @@ function initPreloader() {
   const counter   = document.getElementById('preloaderCounter');
   const status    = document.getElementById('preloaderStatus');
   const barFill   = document.getElementById('preloaderBarFill');
+  const wipe      = document.getElementById('liquidWipe');
   if (!preloader || !nameEl) return;
 
   // Split name into letters
@@ -117,10 +118,22 @@ function initPreloader() {
   const prog = { val: 0 };
   const tl = gsap.timeline();
 
-  // Letters stagger in
-  tl.to(letters, { opacity: 1, y: 0, duration: .85, stagger: .045, ease: 'power3.out' });
+  // Kinetic scattered-letter assembly — each letter starts flung out at a
+  // random offset/rotation and snaps into place, instead of a uniform rise.
+  gsap.set(letters, {
+    opacity: 0,
+    x:        () => gsap.utils.random(-220, 220),
+    y:        () => gsap.utils.random(-150, 170),
+    rotation: () => gsap.utils.random(-65, 65),
+    scale:    () => gsap.utils.random(.6, 1.25),
+  });
+  tl.to(letters, {
+    opacity: 1, x: 0, y: 0, rotation: 0, scale: 1,
+    duration: 1.0, ease: 'back.out(1.6)',
+    stagger: { each: .045, from: 'random' },
+  });
 
-  // Counter + bar fills simultaneously
+  // Counter + bar fill simultaneously
   tl.to(prog, {
     val: 100, duration: 1.55, ease: 'power1.inOut',
     onUpdate: () => {
@@ -135,14 +148,29 @@ function initPreloader() {
   tl.to({}, { duration: .3 });
 
   // Punch-zoom out — wordmark surges toward viewer and dissolves
-  tl.to(nameEl, { scale: 7, opacity: 0, duration: .85, ease: 'power4.in' });
+  tl.addLabel('punch');
+  tl.to(nameEl, { scale: 7, opacity: 0, duration: .85, ease: 'power4.in' }, 'punch');
   tl.to(preloader, {
     opacity: 0, duration: .55, ease: 'power2.in',
     onComplete: () => { preloader.style.display = 'none'; document.body.style.overflow = ''; ScrollTrigger.refresh(); },
-  }, '<.2');
+  }, 'punch+=0.2');
+
+  // Liquid light-wipe — a soft violet/cyan glow sweeps across the screen at
+  // the exact moment the preloader dissolves, bridging into the hero. One
+  // shot, GPU-friendly (opacity + a single custom-property driven gradient
+  // position), then fades itself out — no lingering cost afterward.
+  if (wipe) {
+    const wstate = { x: -30 };
+    tl.to(wipe, { opacity: 1, duration: .3, ease: 'power2.out' }, 'punch');
+    tl.to(wstate, {
+      x: 130, duration: 1.05, ease: 'power2.inOut',
+      onUpdate: () => wipe.style.setProperty('--wx', wstate.x + '%'),
+    }, 'punch');
+    tl.to(wipe, { opacity: 0, duration: .5, ease: 'power2.in' }, 'punch+=0.65');
+  }
 
   // Hero entrance fires while preloader fades
-  tl.call(revealHero, [], '<.1');
+  tl.call(revealHero, [], 'punch+=0.3');
 }
 
 function revealHero() {
@@ -155,6 +183,27 @@ function revealHero() {
     .to('.hero-portrait',       { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'power4.out' }, .38)
     .to('.scroll-cue',          { opacity: 1, duration: .55 }, .85)
     .to('.hud-chrome',          { opacity: 1, duration: .7 }, .5);
+
+  // Spotlight sweep across the headline — plays once, right after the lines
+  // settle into place. Each line gets its own tiny cascade delay so the
+  // light reads as travelling diagonally down across the whole headline,
+  // rather than both words lighting up in perfect unison.
+  document.querySelectorAll('.hero-title .line').forEach((line, i) => {
+    const glow = line.querySelector('.line-glow');
+    if (!glow) return;
+    const startTime = 1.0 + i * 0.16;
+    const state = { x: -40 };
+    tl.to(state, {
+      x: 135, duration: 1.15, ease: 'power2.inOut',
+      onUpdate: () => glow.style.setProperty('--mx', state.x + '%'),
+    }, startTime);
+    // The base text itself brightens in sync with the sweep passing over it —
+    // this is what actually makes the effect visible: a bright glow moving
+    // across text that's already near-white has almost no contrast to reveal.
+    if (!line.classList.contains('hero-title-accent')) {
+      tl.to(line, { color: '#F4F5F7', duration: 1.15, ease: 'power2.inOut' }, startTime);
+    }
+  });
 
   // Portrait 3D parallax on mousemove
   if (!TOUCH) {
@@ -295,17 +344,29 @@ function initTypewriter() {
   const target = document.getElementById('typewriter');
   if (!target) return;
   const phrases = ['Engineers AI Architecture','Audits Cryptographic Primitives','Deploys Multilingual Gen-AI','Optimizes MLOps Pipelines','Crafts Contextual Interfaces','Web Developer @ Codynex Technology'];
-  let pI = 0, cI = 0, del = false, speed = 70;
+  let pI = 0, cI = 0, del = false, speed = 70, active = true, timer = null;
   const tick = () => {
+    if (!active) return;
     const p = phrases[pI];
     del ? cI-- : cI++;
     target.innerHTML = p.substring(0, cI) + '<span class="cursor-blink">_</span>';
     speed = del ? 35 : 68;
     if (!del && cI === p.length)  { del = true;  speed = 1900; }
     if  (del && cI === 0)         { del = false; pI = (pI + 1) % phrases.length; speed = 380; }
-    setTimeout(tick, speed);
+    timer = setTimeout(tick, speed);
   };
-  tick();
+  // Pause the DOM writes entirely once the hero scrolls out of view — this
+  // was running forever in the background regardless of scroll position.
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(([entry]) => {
+      active = entry.isIntersecting;
+      if (active && !timer) tick();
+      if (!active && timer) { clearTimeout(timer); timer = null; }
+    }, { threshold: 0 });
+    io.observe(target.closest('.hero') || target);
+  } else {
+    tick();
+  }
 }
 
 /* =========================================================
@@ -317,11 +378,20 @@ function initMissionReveal() {
   const words = el.textContent.trim().split(/\s+/);
   el.innerHTML = words.map(w => `<span class="word">${w}</span>`).join(' ');
   const wordEls = el.querySelectorAll('.word');
+  let lastLit = -1;
   ScrollTrigger.create({
     trigger: el, start: 'top 75%', end: 'bottom 45%', scrub: true,
     onUpdate: s => {
       const lit = Math.floor(s.progress * wordEls.length);
-      wordEls.forEach((w, i) => w.classList.toggle('is-lit', i <= lit));
+      if (lit === lastLit) return;               // nothing changed this frame — skip all DOM work
+      // Only touch the words whose state actually flipped, not the whole array —
+      // this was re-checking every word on every scroll tick, which is real
+      // main-thread cost stacked directly on top of the scroll gesture.
+      const from = Math.min(lastLit, lit), to = Math.max(lastLit, lit);
+      for (let i = Math.max(0, from); i <= to && i < wordEls.length; i++) {
+        wordEls[i].classList.toggle('is-lit', i <= lit);
+      }
+      lastLit = lit;
     },
   });
 
@@ -411,12 +481,48 @@ function initGalleryReveals() {
    CREDENTIALS — staggered clip-path wipes per row
    ========================================================= */
 function initCredentialReveals() {
-  const cards = gsap.utils.toArray('.cred-card');
-  gsap.set(cards, { opacity: 0, y: 40 });
-  ScrollTrigger.batch(cards, {
-    start: 'top 90%', once: true, interval: .08,
-    onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: .8, stagger: .1, ease: 'power3.out' }),
-  });
+  const track = document.getElementById('credTrack');
+  if (!track) return;
+  const slides = Array.from(track.querySelectorAll('.cred-slide'));
+  const prevBtn = document.querySelector('.cred-prev');
+  const nextBtn = document.querySelector('.cred-next');
+  const counterEl = document.getElementById('credCounterCurrent');
+  const progFill = document.getElementById('credProgFill');
+  const total = slides.length;
+  if (!total) return;
+  let activeIndex = 0;
+
+  const setActive = i => {
+    if (i === activeIndex && slides[i]?.classList.contains('is-active')) return;
+    activeIndex = i;
+    slides.forEach((s, idx) => s.classList.toggle('is-active', idx === i));
+    if (counterEl) counterEl.textContent = String(i + 1).padStart(2, '0');
+    if (progFill) progFill.style.width = (total > 1 ? (i / (total - 1)) * 100 : 100) + '%';
+  };
+
+  // Track the centered slide via IntersectionObserver instead of a scroll
+  // listener — same principle as the rest of this page's scroll-performance
+  // work: no per-frame scroll handler, the browser tells us when it changes.
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.intersectionRatio > 0.6) setActive(slides.indexOf(e.target));
+    });
+  }, { root: track, threshold: [0.6] });
+  slides.forEach(s => io.observe(s));
+
+  const goTo = i => {
+    const clamped = Math.max(0, Math.min(total - 1, i));
+    slides[clamped].scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', inline: 'center', block: 'nearest' });
+  };
+
+  prevBtn?.addEventListener('click', () => goTo(activeIndex - 1));
+  nextBtn?.addEventListener('click', () => goTo(activeIndex + 1));
+
+  setActive(0);
+
+  // Gentle entrance for the whole carousel once it scrolls into view
+  gsap.from('.cred-slider', { opacity: 0, y: 40, duration: .9, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cred-slider', start: 'top 88%', once: true } });
 }
 
 /* =========================================================
@@ -424,7 +530,7 @@ function initCredentialReveals() {
    ========================================================= */
 function initCardHovers() {
   if (TOUCH) return;
-  document.querySelectorAll('.cred-card,.stat,.gallery-card').forEach(card => {
+  document.querySelectorAll('.stat,.gallery-card').forEach(card => {
     let rect = null;
     // Measure once on enter instead of forcing a layout read on every
     // single pixel of mouse movement — this was the biggest source of
@@ -467,16 +573,25 @@ function initTextScramble() {
   const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@!';
   const scramble = el => {
     const final = el.textContent;
-    let frame = 0; const total = 20;
-    const iv = setInterval(() => {
+    const totalMs = 480;
+    let start = null;
+    // rAF instead of setInterval: this stays synced to the browser's actual
+    // paint cycle, so it can never land mid-frame against a scroll gesture
+    // the way an unsynced timer can — that collision was a real freeze source,
+    // especially when two headings scrambled at once during a fast scroll.
+    const step = ts => {
+      if (start === null) start = ts;
+      const progress = Math.min(1, (ts - start) / totalMs);
       let out = '';
       for (let i = 0; i < final.length; i++) {
         if (final[i] === ' ' || final[i] === '\n') { out += final[i]; continue; }
-        out += i < (frame / total) * final.length ? final[i] : CHARS[Math.floor(Math.random() * CHARS.length)];
+        out += i < progress * final.length ? final[i] : CHARS[Math.floor(Math.random() * CHARS.length)];
       }
-      el.textContent = out; frame++;
-      if (frame > total) { el.textContent = final; clearInterval(iv); }
-    }, 30);
+      el.textContent = out;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = final;
+    };
+    requestAnimationFrame(step);
   };
   document.querySelectorAll('.section-eyebrow span,.credentials-title,.gallery-title,.exp-title').forEach(el => {
     ScrollTrigger.create({
@@ -490,13 +605,13 @@ function initTextScramble() {
    ========================================================= */
 function initSimpleReveals() {
   if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.cred-card,.gallery-card,.stat,.es').forEach(el => el.style.opacity = '1');
+    document.querySelectorAll('.gallery-card,.stat,.es').forEach(el => el.style.opacity = '1');
     return;
   }
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; obs.unobserve(e.target); } });
   }, { threshold: .12 });
-  document.querySelectorAll('.cred-card,.gallery-card,.stat,.es').forEach(el => {
+  document.querySelectorAll('.gallery-card,.stat,.es').forEach(el => {
     el.style.opacity = '0'; el.style.transition = 'opacity .6s ease, transform .6s ease'; obs.observe(el);
   });
 }
