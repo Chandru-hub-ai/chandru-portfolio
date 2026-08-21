@@ -424,3 +424,11 @@ body.nav-open .site-header{opacity:0;pointer-events:none}
 
 /* ── Missing utility rules ──────────────────────────────────────────────── */
 .exp-content { min-width: 0; }
+
+/* ── Gallery grid update — supports 9-card layout with varied spans ──────── */
+@media (min-width: 901px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+  }
+}
